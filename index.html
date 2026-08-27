@@ -1,0 +1,2045 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fbf2eb">
+
+<title>Aser & Esra — October 22, 2026</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+    --paper: #fbf2eb;
+    --blush: #ead1c2;
+    --ink: #6f3f2c;
+    --soft: #957264;
+    --gold: #bd8953;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Montserrat, sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+.music {
+    position: fixed;
+    z-index: 20;
+    top: 20px;
+    right: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid rgba(111, 63, 44, .35);
+    border-radius: 50%;
+
+    background: rgba(251, 242, 235, .78);
+    backdrop-filter: blur(8px);
+
+    font-size: 19px;
+    color: var(--ink);
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+
+    min-height: 100svh;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    padding: 0 18px 48px;
+
+    text-align: center;
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255,255,255,.95),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 48%,
+            rgba(224,187,167,.5),
+            transparent 36%
+        ),
+        var(--paper);
+}
+
+.hero-art {
+    position: absolute;
+    z-index: 0;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(920px, 100%);
+    height: 73svh;
+}
+
+.hero-art img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center top;
+
+    mix-blend-mode: multiply;
+}
+
+.hero-art::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 48%,
+            rgba(251,242,235,.68) 96%
+        ),
+        linear-gradient(
+            to bottom,
+            transparent 63%,
+            var(--paper) 100%
+        );
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 2;
+
+    width: min(1050px, 100%);
+}
+
+
+/* =========================
+   HERO TYPOGRAPHY
+========================= */
+
+.kicker {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+
+    font-size: clamp(27px, 5vw, 54px);
+
+    line-height: 1;
+
+    letter-spacing: .22em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+.kicker::after {
+    content: "";
+
+    display: block;
+
+    width: min(260px, 38vw);
+    height: 1px;
+
+    background: var(--gold);
+
+    opacity: .65;
+
+    margin: 15px auto 0;
+}
+
+.names {
+    font-family: "Great Vibes", cursive;
+
+    font-weight: 400;
+
+    font-size: clamp(72px, 16vw, 160px);
+
+    line-height: .78;
+
+    margin: 0;
+}
+
+.date {
+    font-size: 11px;
+
+    letter-spacing: .38em;
+
+    margin: 29px 0 14px;
+}
+
+.tagline {
+    font-family: "Great Vibes", cursive;
+
+    font-size: 26px;
+}
+
+.scroll {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 29px;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: .28em;
+
+    text-transform: uppercase;
+}
+
+.scroll span {
+    width: 39px;
+    height: 39px;
+
+    border: 1px solid var(--gold);
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    position: relative;
+
+    padding: 115px 22px;
+
+    text-align: center;
+
+    overflow: hidden;
+}
+
+.story {
+    background: var(--blush);
+}
+
+.story::before,
+.story::after {
+    content: "";
+
+    position: absolute;
+
+    left: -5%;
+
+    width: 110%;
+    height: 85px;
+
+    background: var(--paper);
+
+    border-radius: 50%;
+
+    top: -50px;
+}
+
+.story::after {
+    top: auto;
+    bottom: -50px;
+}
+
+.eyebrow {
+    font-size: 9px;
+
+    letter-spacing: .36em;
+
+    text-transform: uppercase;
+}
+
+.script {
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(47px, 10vw, 78px);
+
+    line-height: 1.05;
+
+    margin: 12px 0;
+}
+
+.flourish {
+    font-family: "Great Vibes", cursive;
+
+    color: var(--gold);
+
+    font-size: 34px;
+}
+
+.copy {
+    max-width: 610px;
+
+    margin: 20px auto;
+
+    line-height: 2;
+
+    font-size: 14px;
+
+    color: var(--soft);
+}
+
+.memory {
+    position: relative;
+
+    width: min(590px, 88vw);
+
+    margin: 48px auto 0;
+
+    transform: rotate(-1.2deg);
+}
+
+.memory::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -12px;
+
+    background: #fffaf6;
+
+    z-index: -1;
+
+    box-shadow: 0 15px 35px rgba(90,48,34,.12);
+}
+
+.memory img {
+    width: 100%;
+
+    box-shadow: 0 18px 45px rgba(90,48,34,.16);
+}
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.details {
+    background:
+        linear-gradient(
+            rgba(80,43,32,.9),
+            rgba(80,43,32,.9)
+        ),
+        url("hero-couple.jpg") center/cover;
+
+    color: #fff7f1;
+}
+
+.details .copy {
+    color: #f4e4db;
+}
+
+.details .flourish {
+    color: #efc28f;
+}
+
+.grid {
+    width: min(900px, 100%);
+
+    margin: 50px auto 0;
+
+    display: grid;
+
+    gap: 34px;
+}
+
+.item h3 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 31px;
+
+    font-weight: 500;
+
+    margin: 0 0 7px;
+}
+
+.item p {
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+.map {
+    display: inline-block;
+
+    margin-top: 42px;
+
+    padding: 15px 31px;
+
+    border: 1px solid rgba(255,255,255,.65);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: .22em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown {
+    background: var(--paper);
+}
+
+.timer {
+    display: flex;
+
+    justify-content: center;
+
+    width: min(650px, 100%);
+
+    margin: 42px auto 0;
+}
+
+.time {
+    flex: 1;
+
+    max-width: 150px;
+
+    padding: 0 12px;
+
+    border-right: 1px solid rgba(111,63,44,.2);
+}
+
+.time:last-child {
+    border: 0;
+}
+
+.num {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 48px;
+}
+
+.label {
+    font-size: 8px;
+
+    letter-spacing: .18em;
+
+    text-transform: uppercase;
+
+    margin-top: 5px;
+}
+
+
+/* =========================
+   RSVP SECTION
+========================= */
+
+.rsvp {
+    background: #ecd3c5;
+}
+
+.rsvp-button {
+    display: inline-block;
+
+    margin-top: 24px;
+
+    padding: 16px 37px;
+
+    background: var(--ink);
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: .24em;
+
+    text-transform: uppercase;
+
+    border: 0;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   RSVP MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(65,38,29,.52);
+
+    backdrop-filter: blur(7px);
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-card {
+    width: min(520px, 100%);
+
+    max-height: 90svh;
+
+    overflow-y: auto;
+
+    background: var(--paper);
+
+    padding: 48px 30px 34px;
+
+    box-shadow: 0 25px 80px rgba(40,20,12,.25);
+
+    position: relative;
+
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+
+    right: 15px;
+    top: 12px;
+
+    border: 0;
+
+    background: none;
+
+    font-size: 25px;
+
+    color: var(--ink);
+
+    cursor: pointer;
+}
+
+.modal-card h2 {
+    font-family: "Great Vibes", cursive;
+
+    font-size: 58px;
+
+    font-weight: 400;
+
+    margin: 0 0 4px;
+}
+
+.modal-card p {
+    font-size: 12px;
+
+    color: var(--soft);
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.field {
+    text-align: left;
+
+    margin: 24px 0;
+}
+
+.field label {
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: .18em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 9px;
+}
+
+.field input {
+    width: 100%;
+
+    padding: 14px 12px;
+
+    border: 1px solid rgba(111,63,44,.25);
+
+    background: #fffaf6;
+
+    color: var(--ink);
+
+    outline: none;
+
+    font-family: Montserrat, sans-serif;
+
+    font-size: 13px;
+}
+
+.choices {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.choice {
+    padding: 15px 10px;
+
+    border: 1px solid rgba(111,63,44,.28);
+
+    background: #fffaf6;
+
+    color: var(--ink);
+
+    cursor: pointer;
+
+    font-family: Montserrat, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: .05em;
+
+    transition: all .25s ease;
+}
+
+.choice:hover {
+    border-color: var(--ink);
+}
+
+.choice.selected {
+    background: var(--ink);
+
+    color: #fff;
+}
+
+
+/* Partner question hidden until YES */
+
+.partner-field {
+    display: none;
+}
+
+.partner-field.visible {
+    display: block;
+}
+
+
+/* Submit */
+
+.submit {
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 16px;
+
+    border: 0;
+
+    background: var(--ink);
+
+    color: #fff;
+
+    letter-spacing: .2em;
+
+    text-transform: uppercase;
+
+    font-size: 9px;
+
+    cursor: pointer;
+}
+
+.status {
+    min-height: 30px;
+
+    margin-top: 15px;
+
+    font-size: 11px;
+
+    color: var(--soft);
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+
+.success-icon {
+    font-family: "Great Vibes", cursive;
+
+    color: var(--gold);
+
+    font-size: 48px;
+
+    margin-bottom: 5px;
+}
+
+#rsvpSuccessView h2 {
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 105px 20px 90px;
+
+    text-align: center;
+
+    background: var(--paper);
+}
+
+footer .names {
+    font-size: 80px;
+}
+
+.small {
+    font-size: 9px;
+
+    letter-spacing: .25em;
+
+    text-transform: uppercase;
+
+    margin-top: 25px;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(28px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (min-width: 720px) {
+
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 0;
+    }
+
+    .item:not(:last-child) {
+        border-right: 1px solid rgba(255,255,255,.2);
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .hero-art {
+        height: 67svh;
+    }
+
+    .hero-art img {
+        object-fit: cover;
+
+        object-position: center top;
+    }
+
+    .kicker {
+        font-size: 24px;
+
+        letter-spacing: .16em;
+    }
+
+    .names {
+        font-size: clamp(70px, 20vw, 105px);
+    }
+
+    .date {
+        font-size: 10px;
+
+        letter-spacing: .27em;
+    }
+
+    .tagline {
+        font-size: 23px;
+    }
+
+    .timer {
+        width: calc(100% + 10px);
+
+        margin-left: -5px;
+    }
+
+    .time {
+        padding: 0 5px;
+    }
+
+    .num {
+        font-size: 38px;
+    }
+
+    .choices {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-card {
+        padding: 42px 22px 28px;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     MUSIC
+========================= -->
+
+<button
+    class="music"
+    aria-label="Play wedding music"
+>
+    ♫
+</button>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-art">
+
+        <img
+            src="hero-couple.jpg"
+            alt="Illustration of Aser and Esra"
+        >
+
+    </div>
+
+
+    <div class="hero-copy reveal">
+
+        <div class="kicker">
+            We're Getting Married
+        </div>
+
+        <h1 class="names">
+            Aser &amp; Esra
+        </h1>
+
+        <div class="date">
+            OCTOBER 22, 2026
+        </div>
+
+        <div class="tagline">
+            A new chapter, a lifetime together ♡
+        </div>
+
+        <a
+            class="scroll"
+            href="#story"
+        >
+            <span>↓</span>
+            Scroll to begin
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section
+    class="section story"
+    id="story"
+>
+
+    <div class="reveal">
+
+        <div class="eyebrow">
+            Our story
+        </div>
+
+        <div class="script">
+            Two hearts, one story.
+        </div>
+
+        <div class="flourish">
+            ♡
+        </div>
+
+        <p class="copy">
+            Two people, countless little moments, and one beautiful
+            decision — to choose each other, every day. Now we're
+            beginning our favorite chapter yet, and we'd love for you
+            to be there.
+        </p>
+
+        <div class="memory">
+
+            <img
+                src="hero-couple.jpg"
+                alt="Aser and Esra"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     DETAILS
+========================= -->
+
+<section
+    class="section details"
+    id="details"
+>
+
+    <div class="reveal">
+
+        <div class="eyebrow">
+            The big day
+        </div>
+
+        <div class="script">
+            Come celebrate with us
+        </div>
+
+        <div class="flourish">
+            ♡
+        </div>
+
+        <p class="copy">
+            Save the date, dress up, bring your favorite people —
+            and celebrate this once-in-a-lifetime moment with us.
+        </p>
+
+
+        <div class="grid">
+
+            <div class="item">
+
+                <h3>
+                    October 22
+                </h3>
+
+                <p>
+                    Thursday<br>
+                    2026
+                </p>
+
+            </div>
+
+
+            <div class="item">
+
+                <h3>
+                    4:00 PM
+                </h3>
+
+                <p>
+                    Wedding begins<br>
+                    Please arrive around this time
+                </p>
+
+            </div>
+
+
+            <div class="item">
+
+                <h3>
+                    Hilton Pyramids Golf
+                </h3>
+
+                <p>
+                    Giza, Egypt<br>
+                    Wedding venue
+                </p>
+
+            </div>
+
+
+            <div class="item">
+
+                <h3>
+                    Formal
+                </h3>
+
+                <p>
+                    Elegant attire<br>
+                    please
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a
+            class="map"
+            href="https://maps.app.goo.gl/PqWcDLKrKABdtgDi6"
+            target="_blank"
+            rel="noopener"
+        >
+            View location
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     COUNTDOWN
+========================= -->
+
+<section class="section countdown">
+
+    <div class="reveal">
+
+        <div class="eyebrow">
+            Counting down to forever
+        </div>
+
+        <div class="script">
+            The day is almost here
+        </div>
+
+
+        <div
+            class="timer"
+            aria-live="polite"
+        >
+
+            <div class="time">
+
+                <div
+                    class="num"
+                    id="days"
+                >
+                    000
+                </div>
+
+                <div class="label">
+                    Days
+                </div>
+
+            </div>
+
+
+            <div class="time">
+
+                <div
+                    class="num"
+                    id="hours"
+                >
+                    00
+                </div>
+
+                <div class="label">
+                    Hours
+                </div>
+
+            </div>
+
+
+            <div class="time">
+
+                <div
+                    class="num"
+                    id="minutes"
+                >
+                    00
+                </div>
+
+                <div class="label">
+                    Minutes
+                </div>
+
+            </div>
+
+
+            <div class="time">
+
+                <div
+                    class="num"
+                    id="seconds"
+                >
+                    00
+                </div>
+
+                <div class="label">
+                    Seconds
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     RSVP
+========================= -->
+
+<section
+    class="section rsvp"
+    id="rsvp"
+>
+
+    <div class="reveal">
+
+        <div class="eyebrow">
+            One little thing
+        </div>
+
+        <div class="script">
+            Will you join us?
+        </div>
+
+        <p class="copy">
+            Your presence would mean the world to us.
+            Please let us know if you'll be celebrating with us.
+        </p>
+
+        <button
+            class="rsvp-button"
+            id="openRsvp"
+        >
+            Kindly RSVP ♡
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="script">
+        With all our love
+    </div>
+
+    <div class="names">
+        Aser &amp; Esra
+    </div>
+
+    <div class="date">
+        OCTOBER 22, 2026
+    </div>
+
+    <div class="flourish">
+        ♡
+    </div>
+
+    <div class="small">
+        See you there
+    </div>
+
+</footer>
+
+
+
+<!-- =========================
+     RSVP MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="rsvpModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="rsvpTitle"
+    >
+
+        <button
+            class="close"
+            id="closeRsvp"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+        <!-- FORM -->
+
+        <div id="rsvpFormView">
+
+            <h2 id="rsvpTitle">
+                Kindly RSVP
+            </h2>
+
+            <p>
+                We'd love to celebrate with you.
+            </p>
+
+
+            <form id="rsvpForm">
+
+
+                <!-- NAME -->
+
+                <div class="field">
+
+                    <label for="guestName">
+                        Your name
+                    </label>
+
+                    <input
+                        id="guestName"
+                        name="name"
+                        type="text"
+                        autocomplete="name"
+                        required
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+
+
+                <!-- ATTENDANCE -->
+
+                <div class="field">
+
+                    <label>
+                        Will you be joining us?
+                    </label>
+
+
+                    <div class="choices">
+
+                        <button
+                            type="button"
+                            class="choice"
+                            data-answer="Yes"
+                        >
+                            ♡ Yes, I'll be there
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="choice"
+                            data-answer="No"
+                        >
+                            No, I can't make it
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PARTNER -->
+
+                <div
+                    class="field partner-field"
+                    id="partnerField"
+                >
+
+                    <label>
+                        Will your partner be joining you?
+                    </label>
+
+
+                    <div class="choices">
+
+                        <button
+                            type="button"
+                            class="choice partner-choice"
+                            data-partner="Yes"
+                        >
+                            Yes
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="choice partner-choice"
+                            data-partner="No"
+                        >
+                            No
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HIDDEN VALUES -->
+
+                <input
+                    type="hidden"
+                    id="answer"
+                    name="answer"
+                >
+
+                <input
+                    type="hidden"
+                    id="partnerComing"
+                    name="partnerComing"
+                >
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    class="submit"
+                    type="submit"
+                >
+                    Confirm RSVP
+                </button>
+
+
+                <div
+                    class="status"
+                    id="status"
+                ></div>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- SUCCESS -->
+
+        <div
+            id="rsvpSuccessView"
+            style="display:none"
+        >
+
+            <div class="success-icon">
+                ♡
+            </div>
+
+            <h2 id="successTitle">
+                Thank you!
+            </h2>
+
+            <p id="successMessage">
+                We can't wait to celebrate with you.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+(() => {
+
+    "use strict";
+
+
+    /* =========================
+       COUNTDOWN
+    ========================= */
+
+    const target =
+        new Date(
+            "2026-10-22T16:00:00+03:00"
+        ).getTime();
+
+
+    const days =
+        document.getElementById("days");
+
+    const hours =
+        document.getElementById("hours");
+
+    const minutes =
+        document.getElementById("minutes");
+
+    const seconds =
+        document.getElementById("seconds");
+
+
+    function updateCountdown() {
+
+        const difference =
+            Math.max(
+                0,
+                target - Date.now()
+            );
+
+
+        days.textContent =
+            String(
+                Math.floor(
+                    difference / 86400000
+                )
+            ).padStart(3, "0");
+
+
+        hours.textContent =
+            String(
+                Math.floor(
+                    difference % 86400000 /
+                    3600000
+                )
+            ).padStart(2, "0");
+
+
+        minutes.textContent =
+            String(
+                Math.floor(
+                    difference % 3600000 /
+                    60000
+                )
+            ).padStart(2, "0");
+
+
+        seconds.textContent =
+            String(
+                Math.floor(
+                    difference % 60000 /
+                    1000
+                )
+            ).padStart(2, "0");
+
+    }
+
+
+    updateCountdown();
+
+    setInterval(
+        updateCountdown,
+        1000
+    );
+
+
+
+    /* =========================
+       SCROLL REVEALS
+    ========================= */
+
+    const reveals =
+        document.querySelectorAll(".reveal");
+
+
+    if ("IntersectionObserver" in window) {
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target
+                                    .classList
+                                    .add("show");
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: .12
+                }
+            );
+
+
+        reveals.forEach(
+            element =>
+                observer.observe(element)
+        );
+
+    } else {
+
+        reveals.forEach(
+            element =>
+                element.classList.add("show")
+        );
+
+    }
+
+
+
+    /* =========================
+       RSVP ELEMENTS
+    ========================= */
+
+    const modal =
+        document.getElementById(
+            "rsvpModal"
+        );
+
+
+    const openButton =
+        document.getElementById(
+            "openRsvp"
+        );
+
+
+    const closeButton =
+        document.getElementById(
+            "closeRsvp"
+        );
+
+
+    const form =
+        document.getElementById(
+            "rsvpForm"
+        );
+
+
+    const answer =
+        document.getElementById(
+            "answer"
+        );
+
+
+    const partnerComing =
+        document.getElementById(
+            "partnerComing"
+        );
+
+
+    const partnerField =
+        document.getElementById(
+            "partnerField"
+        );
+
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    const formView =
+        document.getElementById(
+            "rsvpFormView"
+        );
+
+
+    const successView =
+        document.getElementById(
+            "rsvpSuccessView"
+        );
+
+
+    const successTitle =
+        document.getElementById(
+            "successTitle"
+        );
+
+
+    const successMessage =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+
+    /* =========================
+       OPEN RSVP
+    ========================= */
+
+    openButton.addEventListener(
+        "click",
+        () => {
+
+            modal.classList.add("open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    document
+                        .getElementById(
+                            "guestName"
+                        )
+                        .focus();
+
+                },
+                50
+            );
+
+        }
+    );
+
+
+
+    /* =========================
+       CLOSE RSVP
+    ========================= */
+
+    function closeModal() {
+
+        modal.classList.remove(
+            "open"
+        );
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    closeButton.addEventListener(
+        "click",
+        closeModal
+    );
+
+
+    modal.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target === modal
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("open")
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+
+    /* =========================
+       YES / NO
+    ========================= */
+
+    document
+        .querySelectorAll(
+            ".choice[data-answer]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                ".choice[data-answer]"
+                            )
+                            .forEach(
+                                item =>
+                                    item.classList.remove(
+                                        "selected"
+                                    )
+                            );
+
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+
+                        answer.value =
+                            button.dataset.answer;
+
+
+                        if (
+                            answer.value === "Yes"
+                        ) {
+
+                            partnerField
+                                .classList
+                                .add("visible");
+
+                            partnerComing.value =
+                                "";
+
+                        } else {
+
+                            partnerField
+                                .classList
+                                .remove("visible");
+
+                            partnerComing.value =
+                                "No";
+
+
+                            document
+                                .querySelectorAll(
+                                    ".partner-choice"
+                                )
+                                .forEach(
+                                    item =>
+                                        item.classList.remove(
+                                            "selected"
+                                        )
+                                );
+
+                        }
+
+
+                        status.textContent =
+                            "";
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* =========================
+       PARTNER YES / NO
+    ========================= */
+
+    document
+        .querySelectorAll(
+            ".partner-choice"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                ".partner-choice"
+                            )
+                            .forEach(
+                                item =>
+                                    item.classList.remove(
+                                        "selected"
+                                    )
+                            );
+
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+
+                        partnerComing.value =
+                            button.dataset.partner;
+
+
+                        status.textContent =
+                            "";
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* =========================
+       GOOGLE APPS SCRIPT
+    ========================= */
+
+    const RSVP_ENDPOINT =
+        "https://script.google.com/macros/s/AKfycbyERhjwjReOXhcEGDXFvmsJS4Q3eOU2BrcpoPr1WSOVOgXEES6iJY4kaHtmjAOp7C3WfA/exec";
+
+
+
+    /* =========================
+       SUBMIT RSVP
+    ========================= */
+
+    form.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            if (!answer.value) {
+
+                status.textContent =
+                    "Please choose Yes or No.";
+
+                return;
+
+            }
+
+
+            if (
+                answer.value === "Yes" &&
+                !partnerComing.value
+            ) {
+
+                status.textContent =
+                    "Please let us know if your partner is coming.";
+
+                return;
+
+            }
+
+
+            const name =
+                document
+                    .getElementById(
+                        "guestName"
+                    )
+                    .value
+                    .trim();
+
+
+            if (!name) {
+
+                status.textContent =
+                    "Please enter your name.";
+
+                return;
+
+            }
+
+
+            status.textContent =
+                "Sending your RSVP…";
+
+
+            try {
+
+                const body =
+                    new URLSearchParams({
+
+                        name: name,
+
+                        answer:
+                            answer.value,
+
+                        partnerComing:
+                            answer.value === "Yes"
+                                ? partnerComing.value
+                                : "No"
+
+                    });
+
+
+                await fetch(
+                    RSVP_ENDPOINT,
+                    {
+                        method: "POST",
+
+                        mode: "no-cors",
+
+                        headers: {
+                            "Content-Type":
+                                "application/x-www-form-urlencoded;charset=UTF-8"
+                        },
+
+                        body: body
+                    }
+                );
+
+
+                /* =========================
+                   SUCCESS
+                ========================= */
+
+                successTitle.textContent =
+                    "Thank you, " +
+                    name +
+                    " ♡";
+
+
+                if (
+                    answer.value === "Yes"
+                ) {
+
+                    if (
+                        partnerComing.value === "Yes"
+                    ) {
+
+                        successMessage.textContent =
+                            "We can't wait to celebrate with both of you.";
+
+                    } else {
+
+                        successMessage.textContent =
+                            "We can't wait to celebrate with you.";
+
+                    }
+
+                } else {
+
+                    successMessage.textContent =
+                        "We'll miss you, but thank you for letting us know.";
+
+                }
+
+
+                formView.style.display =
+                    "none";
+
+                successView.style.display =
+                    "block";
+
+
+            } catch (error) {
+
+                status.textContent =
+                    "Something went wrong. Please try again.";
+
+            }
+
+        }
+    );
+
+
+})();
+
+</script>
+
+</body>
+</html>
