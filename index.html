@@ -2693,32 +2693,58 @@ form.addEventListener(
 
 
 /* =========================================================
-   MUSIC BUTTON
+   WEDDING MUSIC
    ========================================================= */
 
 const musicButton =
-  document.getElementById(
-    "musicButton"
-  );
+  document.getElementById("musicButton");
+
+const weddingMusic =
+  new Audio("wedding.mp3");
+
+weddingMusic.loop = true;
+
+weddingMusic.volume = 0.65;
 
 
 musicButton.addEventListener(
   "click",
-  () => {
+  async () => {
 
-    /*
-      Music can be connected here later.
+    try {
 
-      Example:
+      if (weddingMusic.paused) {
 
-      const audio =
-        new Audio("music.mp3");
+        await weddingMusic.play();
 
-      audio.play();
-    */
+        musicButton.textContent = "❚❚";
 
-    musicButton.textContent =
-      "♫";
+        musicButton.setAttribute(
+          "aria-label",
+          "Pause wedding music"
+        );
+
+      } else {
+
+        weddingMusic.pause();
+
+        musicButton.textContent = "♫";
+
+        musicButton.setAttribute(
+          "aria-label",
+          "Play wedding music"
+        );
+
+      }
+
+    } catch (error) {
+
+      console.log(
+        "Unable to play wedding music:",
+        error
+      );
+
+    }
 
   }
 );
