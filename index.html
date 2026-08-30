@@ -8,7 +8,13 @@
 <title>Aser & Esra — October 22, 2026</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap');
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
 
 :root{
   --paper:#fbf2eb;
@@ -18,6 +24,11 @@
   --gold:#bd8953;
   --white:#fffaf6;
 }
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
 
 *{
   box-sizing:border-box;
@@ -47,36 +58,64 @@ a{
 
 
 /* =========================================================
-   FLOATING ROMANTIC ANIMATIONS
+   FLOATING EFFECTS
    ========================================================= */
 
 .floating-effects{
   position:fixed;
   inset:0;
+
+  width:100%;
+  height:100%;
+
   pointer-events:none;
-  z-index:50;
+
+  z-index:60;
+
   overflow:hidden;
 }
+
 
 .floating-heart,
 .floating-sparkle{
   position:absolute;
+
+  display:block;
+
   pointer-events:none;
   user-select:none;
+
   opacity:0;
+
+  will-change:
+    transform,
+    opacity;
 }
+
 
 .floating-heart{
   font-family:Georgia,serif;
-  color:rgba(111,63,44,.35);
-  animation:heartFloat linear forwards;
+
+  color:rgba(111,63,44,.55);
+
+  animation-name:heartFloat;
+  animation-timing-function:linear;
+  animation-fill-mode:forwards;
 }
 
+
 .floating-sparkle{
-  color:rgba(189,137,83,.7);
-  font-size:12px;
-  animation:sparkleFloat linear forwards;
+  color:rgba(189,137,83,.9);
+
+  animation-name:sparkleFloat;
+  animation-timing-function:linear;
+  animation-fill-mode:forwards;
 }
+
+
+/* =========================================================
+   HEART ANIMATION
+   ========================================================= */
 
 @keyframes heartFloat{
 
@@ -84,12 +123,13 @@ a{
     transform:
       translate3d(0,110vh,0)
       rotate(-10deg)
-      scale(.7);
+      scale(.65);
+
     opacity:0;
   }
 
   10%{
-    opacity:.7;
+    opacity:.75;
   }
 
   50%{
@@ -97,95 +137,121 @@ a{
       translate3d(var(--drift),50vh,0)
       rotate(8deg)
       scale(1);
-    opacity:.55;
+
+    opacity:.6;
   }
 
-  85%{
-    opacity:.3;
+  80%{
+    opacity:.4;
   }
 
   100%{
     transform:
-      translate3d(calc(var(--drift) * -0.5),-15vh,0)
+      translate3d(
+        calc(var(--drift) * -0.5),
+        -15vh,
+        0
+      )
       rotate(-8deg)
-      scale(.75);
+      scale(.7);
+
     opacity:0;
   }
 }
+
+
+/* =========================================================
+   SPARKLE ANIMATION
+   ========================================================= */
 
 @keyframes sparkleFloat{
 
   0%{
     transform:
       translate3d(0,105vh,0)
-      scale(.2)
+      scale(.15)
       rotate(0deg);
+
     opacity:0;
   }
 
   15%{
-    opacity:.8;
+    opacity:.9;
   }
 
   45%{
     transform:
       translate3d(var(--drift),55vh,0)
-      scale(1)
+      scale(1.15)
       rotate(90deg);
-    opacity:.65;
+
+    opacity:.75;
   }
 
   75%{
-    opacity:.4;
+    opacity:.45;
   }
 
   100%{
     transform:
-      translate3d(calc(var(--drift) * -0.5),-10vh,0)
+      translate3d(
+        calc(var(--drift) * -0.5),
+        -10vh,
+        0
+      )
       scale(.15)
       rotate(180deg);
+
     opacity:0;
   }
 }
 
 
-/* Small decorative sparkles in hero */
+/* =========================================================
+   HERO DECORATIVE SPARKLES
+   ========================================================= */
 
 .hero-sparkle{
   position:absolute;
-  z-index:1;
-  color:rgba(189,137,83,.65);
-  font-size:14px;
+
+  z-index:2;
+
+  color:rgba(189,137,83,.7);
+
   pointer-events:none;
+
   animation:twinkle 3s ease-in-out infinite;
 }
+
 
 .hero-sparkle:nth-child(1){
   top:22%;
   left:12%;
+  font-size:14px;
   animation-delay:.4s;
 }
 
 .hero-sparkle:nth-child(2){
   top:31%;
   right:14%;
-  animation-delay:1.2s;
   font-size:10px;
+  animation-delay:1.2s;
 }
 
 .hero-sparkle:nth-child(3){
   top:56%;
   left:8%;
-  animation-delay:2s;
   font-size:9px;
+  animation-delay:2s;
 }
 
 .hero-sparkle:nth-child(4){
   top:48%;
   right:8%;
-  animation-delay:.8s;
   font-size:13px;
+  animation-delay:.8s;
 }
+
 
 @keyframes twinkle{
 
@@ -195,19 +261,21 @@ a{
   }
 
   50%{
-    opacity:.85;
-    transform:scale(1.3) rotate(45deg);
+    opacity:.9;
+    transform:scale(1.35) rotate(45deg);
   }
 }
 
 
 /* =========================================================
-   MUSIC
+   MUSIC BUTTON
    ========================================================= */
 
 .music{
   position:fixed;
+
   z-index:70;
+
   top:20px;
   right:20px;
 
@@ -215,12 +283,15 @@ a{
   height:50px;
 
   border:1px solid rgba(111,63,44,.35);
+
   border-radius:50%;
 
   background:rgba(251,242,235,.78);
+
   backdrop-filter:blur(8px);
 
   font-size:19px;
+
   color:var(--ink);
 
   cursor:pointer;
@@ -232,6 +303,7 @@ a{
 
 .music:hover{
   transform:scale(1.08);
+
   background:rgba(255,250,246,.95);
 }
 
@@ -246,10 +318,15 @@ a{
   min-height:100svh;
 
   display:flex;
+
   align-items:flex-end;
+
   justify-content:center;
 
-  padding:0 18px 48px;
+  padding:
+    0
+    18px
+    48px;
 
   text-align:center;
 
@@ -269,8 +346,10 @@ a{
     var(--paper);
 }
 
+
 .hero-art{
   position:absolute;
+
   z-index:0;
 
   top:0;
@@ -279,23 +358,28 @@ a{
   transform:translateX(-50%);
 
   width:min(920px,100%);
+
   height:73svh;
 }
+
 
 .hero-art img{
   width:100%;
   height:100%;
 
   object-fit:contain;
+
   object-position:center top;
 
   mix-blend-mode:multiply;
 }
 
+
 .hero-art:after{
   content:"";
 
   position:absolute;
+
   inset:0;
 
   background:
@@ -311,18 +395,27 @@ a{
     );
 }
 
+
 .hero-copy{
   position:relative;
+
   z-index:3;
 
   width:min(1050px,100%);
 }
 
+
 .kicker{
   font-family:"Cormorant Garamond",serif;
+
   font-weight:500;
 
-  font-size:clamp(27px,5vw,54px);
+  font-size:
+    clamp(
+      27px,
+      5vw,
+      54px
+    );
 
   line-height:1;
 
@@ -336,27 +429,38 @@ a{
     0 1px 15px rgba(251,242,235,.8);
 }
 
+
 .kicker:after{
   content:"";
 
   display:block;
 
   width:min(260px,38vw);
+
   height:1px;
 
   background:var(--gold);
 
   opacity:.65;
 
-  margin:15px auto 0;
+  margin:
+    15px
+    auto
+    0;
 }
+
 
 .names{
   font-family:"Great Vibes",cursive;
 
   font-weight:400;
 
-  font-size:clamp(72px,16vw,160px);
+  font-size:
+    clamp(
+      72px,
+      16vw,
+      160px
+    );
 
   line-height:.78;
 
@@ -366,18 +470,25 @@ a{
     0 2px 20px rgba(251,242,235,.7);
 }
 
+
 .date{
   font-size:11px;
 
   letter-spacing:.38em;
 
-  margin:29px 0 14px;
+  margin:
+    29px
+    0
+    14px;
 }
+
 
 .tagline{
   font-family:"Great Vibes",cursive;
+
   font-size:26px;
 }
+
 
 .scroll{
   display:inline-flex;
@@ -397,6 +508,7 @@ a{
   text-transform:uppercase;
 }
 
+
 .scroll span{
   width:39px;
   height:39px;
@@ -406,12 +518,14 @@ a{
   border-radius:50%;
 
   display:grid;
+
   place-items:center;
 
   font-size:16px;
 
   animation:scrollPulse 2.5s ease-in-out infinite;
 }
+
 
 @keyframes scrollPulse{
 
@@ -432,16 +546,20 @@ a{
 .section{
   position:relative;
 
-  padding:115px 22px;
+  padding:
+    115px
+    22px;
 
   text-align:center;
 
   overflow:hidden;
 }
 
+
 .story{
   background:var(--blush);
 }
+
 
 .story:before,
 .story:after{
@@ -462,10 +580,12 @@ a{
   top:-50px;
 }
 
+
 .story:after{
   top:auto;
   bottom:-50px;
 }
+
 
 .eyebrow{
   font-size:9px;
@@ -475,15 +595,24 @@ a{
   text-transform:uppercase;
 }
 
+
 .script{
   font-family:"Great Vibes",cursive;
 
-  font-size:clamp(47px,10vw,78px);
+  font-size:
+    clamp(
+      47px,
+      10vw,
+      78px
+    );
 
   line-height:1.05;
 
-  margin:12px 0;
+  margin:
+    12px
+    0;
 }
+
 
 .flourish{
   font-family:"Great Vibes",cursive;
@@ -493,10 +622,13 @@ a{
   font-size:34px;
 }
 
+
 .copy{
   max-width:610px;
 
-  margin:20px auto;
+  margin:
+    20px
+    auto;
 
   line-height:2;
 
@@ -505,15 +637,20 @@ a{
   color:var(--soft);
 }
 
+
 .memory{
   position:relative;
 
   width:min(590px,88vw);
 
-  margin:48px auto 0;
+  margin:
+    48px
+    auto
+    0;
 
   transform:rotate(-1.2deg);
 }
+
 
 .memory:before{
   content:"";
@@ -527,14 +664,17 @@ a{
   z-index:-1;
 
   box-shadow:
-    0 15px 35px rgba(90,48,34,.12);
+    0 15px 35px
+    rgba(90,48,34,.12);
 }
+
 
 .memory img{
   width:100%;
 
   box-shadow:
-    0 18px 45px rgba(90,48,34,.16);
+    0 18px 45px
+    rgba(90,48,34,.16);
 }
 
 
@@ -548,28 +688,36 @@ a{
       rgba(80,43,32,.9),
       rgba(80,43,32,.9)
     ),
-    url("hero-couple.jpg") center/cover;
+    url("hero-couple.jpg")
+    center/cover;
 
   color:#fff7f1;
 }
+
 
 .details .copy{
   color:#f4e4db;
 }
 
+
 .details .flourish{
   color:#efc28f;
 }
 
+
 .grid{
   width:min(900px,100%);
 
-  margin:50px auto 0;
+  margin:
+    50px
+    auto
+    0;
 
   display:grid;
 
   gap:34px;
 }
+
 
 .item h3{
   font-family:"Cormorant Garamond",serif;
@@ -578,8 +726,12 @@ a{
 
   font-weight:500;
 
-  margin:0 0 7px;
+  margin:
+    0
+    0
+    7px;
 }
+
 
 .item p{
   font-size:12px;
@@ -589,14 +741,19 @@ a{
   margin:0;
 }
 
+
 .map{
   display:inline-block;
 
   margin-top:42px;
 
-  padding:15px 31px;
+  padding:
+    15px
+    31px;
 
-  border:1px solid rgba(255,255,255,.65);
+  border:
+    1px solid
+    rgba(255,255,255,.65);
 
   text-decoration:none;
 
@@ -611,8 +768,10 @@ a{
     color .3s ease;
 }
 
+
 .map:hover{
   background:#fff;
+
   color:var(--ink);
 }
 
@@ -625,6 +784,7 @@ a{
   background:var(--paper);
 }
 
+
 .timer{
   display:flex;
 
@@ -632,29 +792,39 @@ a{
 
   width:min(650px,100%);
 
-  margin:42px auto 0;
+  margin:
+    42px
+    auto
+    0;
 }
+
 
 .time{
   flex:1;
 
   max-width:150px;
 
-  padding:0 12px;
+  padding:
+    0
+    12px;
 
   border-right:
-    1px solid rgba(111,63,44,.2);
+    1px solid
+    rgba(111,63,44,.2);
 }
+
 
 .time:last-child{
   border:0;
 }
+
 
 .num{
   font-family:"Cormorant Garamond",serif;
 
   font-size:48px;
 }
+
 
 .label{
   font-size:8px;
@@ -675,18 +845,19 @@ a{
   background:#ecd3c5;
 }
 
+
 .rsvp-button{
   display:inline-block;
 
   margin-top:24px;
 
-  padding:16px 37px;
+  padding:
+    16px
+    37px;
 
   background:var(--ink);
 
   color:#fff;
-
-  text-decoration:none;
 
   font-size:9px;
 
@@ -703,11 +874,13 @@ a{
     box-shadow .3s ease;
 }
 
+
 .rsvp-button:hover{
   transform:translateY(-3px);
 
   box-shadow:
-    0 10px 25px rgba(90,48,34,.2);
+    0 10px 25px
+    rgba(90,48,34,.2);
 }
 
 
@@ -725,33 +898,42 @@ a{
   display:none;
 
   align-items:center;
+
   justify-content:center;
 
   padding:20px;
 
-  background:rgba(65,38,29,.52);
+  background:
+    rgba(65,38,29,.52);
 
   backdrop-filter:blur(7px);
 }
 
+
 .modal.open{
   display:flex;
 }
+
 
 .modal-card{
   width:min(520px,100%);
 
   background:var(--paper);
 
-  padding:40px 28px 32px;
+  padding:
+    40px
+    28px
+    32px;
 
   box-shadow:
-    0 25px 80px rgba(40,20,12,.25);
+    0 25px 80px
+    rgba(40,20,12,.25);
 
   position:relative;
 
   text-align:center;
 }
+
 
 .close{
   position:absolute;
@@ -770,6 +952,7 @@ a{
   cursor:pointer;
 }
 
+
 .modal-card h2{
   font-family:"Great Vibes",cursive;
 
@@ -777,8 +960,12 @@ a{
 
   font-weight:400;
 
-  margin:0 0 4px;
+  margin:
+    0
+    0
+    4px;
 }
+
 
 .modal-card p{
   font-size:12px;
@@ -788,11 +975,15 @@ a{
   line-height:1.7;
 }
 
+
 .field{
   text-align:left;
 
-  margin:18px 0;
+  margin:
+    18px
+    0;
 }
+
 
 .field label{
   display:block;
@@ -806,6 +997,7 @@ a{
   margin-bottom:7px;
 }
 
+
 .field input,
 .field select{
   width:100%;
@@ -813,7 +1005,8 @@ a{
   padding:13px 12px;
 
   border:
-    1px solid rgba(111,63,44,.25);
+    1px solid
+    rgba(111,63,44,.25);
 
   background:#fffaf6;
 
@@ -824,6 +1017,7 @@ a{
   font-family:Montserrat;
 }
 
+
 .choices{
   display:grid;
 
@@ -832,11 +1026,13 @@ a{
   gap:10px;
 }
 
+
 .choice{
   padding:14px;
 
   border:
-    1px solid rgba(111,63,44,.28);
+    1px solid
+    rgba(111,63,44,.28);
 
   background:#fffaf6;
 
@@ -850,15 +1046,18 @@ a{
     transform .2s ease;
 }
 
+
 .choice:hover{
   transform:translateY(-1px);
 }
+
 
 .choice.selected{
   background:var(--ink);
 
   color:#fff;
 }
+
 
 .submit{
   width:100%;
@@ -882,6 +1081,7 @@ a{
   cursor:pointer;
 }
 
+
 .status{
   min-height:20px;
 
@@ -898,16 +1098,21 @@ a{
    ========================================================= */
 
 footer{
-  padding:105px 20px 90px;
+  padding:
+    105px
+    20px
+    90px;
 
   text-align:center;
 
   background:var(--paper);
 }
 
+
 footer .names{
   font-size:80px;
 }
+
 
 .small{
   font-size:9px;
@@ -934,6 +1139,7 @@ footer .names{
     transform .9s ease;
 }
 
+
 .reveal.show{
   opacity:1;
 
@@ -948,15 +1154,19 @@ footer .names{
 @media(min-width:720px){
 
   .grid{
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+      repeat(4,1fr);
 
     gap:0;
   }
 
+
   .item:not(:last-child){
     border-right:
-      1px solid rgba(255,255,255,.2);
+      1px solid
+      rgba(255,255,255,.2);
   }
+
 }
 
 
@@ -970,11 +1180,13 @@ footer .names{
     height:67svh;
   }
 
+
   .hero-art img{
     object-fit:cover;
 
     object-position:center top;
   }
+
 
   .kicker{
     font-size:24px;
@@ -982,9 +1194,16 @@ footer .names{
     letter-spacing:.16em;
   }
 
+
   .names{
-    font-size:clamp(70px,20vw,105px);
+    font-size:
+      clamp(
+        70px,
+        20vw,
+        105px
+      );
   }
+
 
   .date{
     font-size:10px;
@@ -992,23 +1211,31 @@ footer .names{
     letter-spacing:.27em;
   }
 
+
   .tagline{
     font-size:23px;
   }
 
+
   .timer{
-    width:calc(100% + 10px);
+    width:
+      calc(100% + 10px);
 
     margin-left:-5px;
   }
 
+
   .time{
-    padding:0 5px;
+    padding:
+      0
+      5px;
   }
+
 
   .num{
     font-size:38px;
   }
+
 
   .music{
     width:44px;
@@ -1018,18 +1245,85 @@ footer .names{
     right:14px;
   }
 
-  .floating-heart{
-    font-size:14px;
+
+  /* =====================================================
+     MOBILE FLOATING EFFECTS
+     ===================================================== */
+
+  .floating-effects{
+
+    display:block;
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    z-index:60;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
   }
 
-  .floating-sparkle{
-    font-size:10px;
+
+  .floating-heart{
+
+    display:block;
+
+    position:absolute;
+
+    font-size:18px;
+
+    color:rgba(111,63,44,.55);
+
+    opacity:0;
+
+    animation-name:heartFloat;
+
+    animation-timing-function:linear;
+
+    animation-fill-mode:forwards;
+
+    will-change:
+      transform,
+      opacity;
+
   }
+
+
+  .floating-sparkle{
+
+    display:block;
+
+    position:absolute;
+
+    font-size:14px;
+
+    color:rgba(189,137,83,.9);
+
+    opacity:0;
+
+    animation-name:sparkleFloat;
+
+    animation-timing-function:linear;
+
+    animation-fill-mode:forwards;
+
+    will-change:
+      transform,
+      opacity;
+
+  }
+
 }
 
 
 /* =========================================================
-   ACCESSIBILITY
+   REDUCED MOTION
    ========================================================= */
 
 @media(prefers-reduced-motion:reduce){
@@ -1038,20 +1332,24 @@ footer .names{
     scroll-behavior:auto;
   }
 
+
   .reveal{
     opacity:1;
 
     transform:none;
   }
 
+
   .floating-effects{
     display:none;
   }
+
 
   .hero-sparkle,
   .scroll span{
     animation:none;
   }
+
 }
 
 </style>
@@ -1065,10 +1363,15 @@ footer .names{
      FLOATING HEARTS & SPARKLES
      ======================================================= -->
 
-<div class="floating-effects" id="floatingEffects"></div>
+<div
+  class="floating-effects"
+  id="floatingEffects"
+></div>
 
 
-<!-- MUSIC BUTTON -->
+<!-- =======================================================
+     MUSIC BUTTON
+     ======================================================= -->
 
 <button
   class="music"
@@ -1085,23 +1388,19 @@ footer .names{
 
 <section class="hero">
 
-  <!-- Decorative sparkles -->
+
+  <!-- Decorative hero sparkles -->
 
   <span class="hero-sparkle">✦</span>
+
   <span class="hero-sparkle">✦</span>
+
   <span class="hero-sparkle">✧</span>
+
   <span class="hero-sparkle">✦</span>
 
 
   <div class="hero-art">
-
-    <!--
-      IMPORTANT:
-      Save your new wedding illustration in the same folder
-      as this HTML file and name it:
-
-      hero-couple.jpg
-    -->
 
     <img
       src="hero-couple.jpg"
@@ -1117,24 +1416,31 @@ footer .names{
       We're Getting Married
     </div>
 
+
     <h1 class="names">
       Aser &amp; Esra
     </h1>
+
 
     <div class="date">
       OCTOBER 22, 2026
     </div>
 
+
     <div class="tagline">
       A new chapter, a lifetime together ♡
     </div>
+
 
     <a
       class="scroll"
       href="#story"
     >
+
       <span>↓</span>
+
       Scroll to begin
+
     </a>
 
   </div>
@@ -1153,24 +1459,33 @@ footer .names{
 
   <div class="reveal">
 
+
     <div class="eyebrow">
       Our story
     </div>
+
 
     <div class="script">
       Two hearts, one story.
     </div>
 
+
     <div class="flourish">
       ♡
     </div>
 
+
     <p class="copy">
-      Two people, countless little moments, and one beautiful
-      decision — to choose each other, every day.
+
+      Two people, countless little moments,
+      and one beautiful decision — to choose
+      each other, every day.
+
       Now we're beginning our favorite chapter yet,
       and we'd love for you to be there.
+
     </p>
+
 
     <div class="memory">
 
@@ -1197,21 +1512,28 @@ footer .names{
 
   <div class="reveal">
 
+
     <div class="eyebrow">
       The big day
     </div>
+
 
     <div class="script">
       Come celebrate with us
     </div>
 
+
     <div class="flourish">
       ♡
     </div>
 
+
     <p class="copy">
-      Save the date, dress up, bring your favorite people —
-      and celebrate this once-in-a-lifetime moment with us.
+
+      Save the date, dress up, bring your
+      favorite people — and celebrate this
+      once-in-a-lifetime moment with us.
+
     </p>
 
 
@@ -1286,6 +1608,7 @@ footer .names{
       View location
     </a>
 
+
   </div>
 
 </section>
@@ -1299,9 +1622,11 @@ footer .names{
 
   <div class="reveal">
 
+
     <div class="eyebrow">
       Counting down to forever
     </div>
+
 
     <div class="script">
       The day is almost here
@@ -1312,6 +1637,7 @@ footer .names{
       class="timer"
       aria-live="polite"
     >
+
 
       <div class="time">
 
@@ -1376,6 +1702,7 @@ footer .names{
 
       </div>
 
+
     </div>
 
   </div>
@@ -1394,18 +1721,26 @@ footer .names{
 
   <div class="reveal">
 
+
     <div class="eyebrow">
       One little thing
     </div>
+
 
     <div class="script">
       Will you join us?
     </div>
 
+
     <p class="copy">
-      Please let us know if you'll be celebrating with us.
+
+      Please let us know if you'll be
+      celebrating with us.
+
       It only takes a moment.
+
     </p>
+
 
     <button
       class="rsvp-button"
@@ -1413,6 +1748,7 @@ footer .names{
     >
       Kindly RSVP
     </button>
+
 
   </div>
 
@@ -1425,25 +1761,31 @@ footer .names{
 
 <footer>
 
+
   <div class="script">
     With all our love
   </div>
+
 
   <div class="names">
     Aser &amp; Esra
   </div>
 
+
   <div class="date">
     OCTOBER 22, 2026
   </div>
+
 
   <div class="flourish">
     ♡
   </div>
 
+
   <div class="small">
     See you there
   </div>
+
 
 </footer>
 
@@ -1458,12 +1800,14 @@ footer .names{
   aria-hidden="true"
 >
 
+
   <div
     class="modal-card"
     role="dialog"
     aria-modal="true"
     aria-labelledby="rsvpTitle"
   >
+
 
     <button
       class="close"
@@ -1478,6 +1822,7 @@ footer .names{
       Kindly RSVP
     </h2>
 
+
     <p>
       We'd love to know if you'll be joining us.
     </p>
@@ -1486,11 +1831,14 @@ footer .names{
     <form id="rsvpForm">
 
 
+      <!-- NAME -->
+
       <div class="field">
 
         <label for="guestName">
           Your name
         </label>
+
 
         <input
           id="guestName"
@@ -1504,6 +1852,8 @@ footer .names{
       </div>
 
 
+      <!-- ATTENDING -->
+
       <div class="field">
 
         <label>
@@ -1512,6 +1862,7 @@ footer .names{
 
 
         <div class="choices">
+
 
           <button
             type="button"
@@ -1530,10 +1881,13 @@ footer .names{
             No, sadly I can't
           </button>
 
+
         </div>
 
       </div>
 
+
+      <!-- PARTNER -->
 
       <div
         class="field"
@@ -1547,6 +1901,7 @@ footer .names{
 
 
         <div class="choices">
+
 
           <button
             type="button"
@@ -1564,6 +1919,7 @@ footer .names{
           >
             Yes, my partner
           </button>
+
 
         </div>
 
@@ -1590,7 +1946,9 @@ footer .names{
         id="status"
       ></div>
 
+
     </form>
+
 
   </div>
 
@@ -1605,738 +1963,765 @@ footer .names{
 
 (() => {
 
-  "use strict";
+"use strict";
 
 
-  /* =====================================================
-     COUNTDOWN
-     ===================================================== */
+/* =========================================================
+   COUNTDOWN
+   ========================================================= */
 
-  const target =
-    new Date(
-      "2026-10-22T16:00:00+03:00"
-    ).getTime();
-
-
-  const d =
-    document.getElementById("days");
-
-  const h =
-    document.getElementById("hours");
-
-  const m =
-    document.getElementById("minutes");
-
-  const s =
-    document.getElementById("seconds");
+const target =
+  new Date(
+    "2026-10-22T16:00:00+03:00"
+  ).getTime();
 
 
-  function tick(){
+const days =
+  document.getElementById("days");
 
-    let x =
-      Math.max(
-        0,
-        target - Date.now()
-      );
+const hours =
+  document.getElementById("hours");
 
+const minutes =
+  document.getElementById("minutes");
 
-    d.textContent =
-      String(
-        Math.floor(
-          x / 86400000
-        )
-      ).padStart(3,"0");
+const seconds =
+  document.getElementById("seconds");
 
 
-    h.textContent =
-      String(
-        Math.floor(
-          x % 86400000 / 3600000
-        )
-      ).padStart(2,"0");
+function tick(){
+
+  const remaining =
+    Math.max(
+      0,
+      target - Date.now()
+    );
 
 
-    m.textContent =
-      String(
-        Math.floor(
-          x % 3600000 / 60000
-        )
-      ).padStart(2,"0");
+  days.textContent =
+    String(
+      Math.floor(
+        remaining / 86400000
+      )
+    ).padStart(3,"0");
 
 
-    s.textContent =
-      String(
-        Math.floor(
-          x % 60000 / 1000
-        )
-      ).padStart(2,"0");
+  hours.textContent =
+    String(
+      Math.floor(
+        remaining % 86400000 /
+        3600000
+      )
+    ).padStart(2,"0");
 
-  }
+
+  minutes.textContent =
+    String(
+      Math.floor(
+        remaining % 3600000 /
+        60000
+      )
+    ).padStart(2,"0");
 
 
-  tick();
+  seconds.textContent =
+    String(
+      Math.floor(
+        remaining % 60000 /
+        1000
+      )
+    ).padStart(2,"0");
 
-  setInterval(
-    tick,
-    1000
+}
+
+
+tick();
+
+setInterval(
+  tick,
+  1000
+);
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+const reveals =
+  document.querySelectorAll(
+    ".reveal"
   );
 
 
-  /* =====================================================
-     SCROLL REVEAL
-     ===================================================== */
-
-  const reveals =
-    document.querySelectorAll(
-      ".reveal"
-    );
-
-
-  if(
-    "IntersectionObserver"
-    in window
-  ){
-
-    const observer =
-      new IntersectionObserver(
-        entries => {
-
-          entries.forEach(
-            entry => {
-
-              if(
-                entry.isIntersecting
-              ){
-
-                entry.target
-                  .classList
-                  .add("show");
-
-              }
-
-            }
-          );
-
-        },
-        {
-          threshold:.12
-        }
-      );
-
-
-    reveals.forEach(
-      element =>
-        observer.observe(element)
-    );
-
-  }
-
-  else{
-
-    reveals.forEach(
-      element =>
-        element.classList.add("show")
-    );
-
-  }
-
-
-  /* =====================================================
-     FLOATING HEARTS & SPARKLES
-     ===================================================== */
-
-  const effects =
-    document.getElementById(
-      "floatingEffects"
-    );
-
-
-  const heartSymbols = [
-    "♡",
-    "♥",
-    "♡",
-    "♡"
-  ];
-
-
-  const sparkleSymbols = [
-    "✦",
-    "✧",
-    "⋆",
-    "✦"
-  ];
-
-
-  function createHeart(){
-
-    const heart =
-      document.createElement("span");
-
-
-    heart.className =
-      "floating-heart";
-
-
-    heart.textContent =
-      heartSymbols[
-        Math.floor(
-          Math.random() *
-          heartSymbols.length
-        )
-      ];
-
-
-    const size =
-      12 +
-      Math.random() * 13;
-
-
-    const duration =
-      10 +
-      Math.random() * 9;
-
-
-    const drift =
-      (Math.random() * 160 - 80) +
-      "px";
-
-
-    heart.style.left =
-      Math.random() * 100 + "%";
-
-
-    heart.style.fontSize =
-      size + "px";
-
-
-    heart.style.setProperty(
-      "--drift",
-      drift
-    );
-
-
-    heart.style.animationDuration =
-      duration + "s";
-
-
-    effects.appendChild(
-      heart
-    );
-
-
-    setTimeout(
-      () => heart.remove(),
-      duration * 1000 + 500
-    );
-
-  }
-
-
-  function createSparkle(){
-
-    const sparkle =
-      document.createElement("span");
-
-
-    sparkle.className =
-      "floating-sparkle";
-
-
-    sparkle.textContent =
-      sparkleSymbols[
-        Math.floor(
-          Math.random() *
-          sparkleSymbols.length
-        )
-      ];
-
-
-    const duration =
-      7 +
-      Math.random() * 7;
-
-
-    const drift =
-      (Math.random() * 140 - 70) +
-      "px";
-
-
-    sparkle.style.left =
-      Math.random() * 100 + "%";
-
-
-    sparkle.style.setProperty(
-      "--drift",
-      drift
-    );
-
-
-    sparkle.style.animationDuration =
-      duration + "s";
-
-
-    effects.appendChild(
-      sparkle
-    );
-
-
-    setTimeout(
-      () => sparkle.remove(),
-      duration * 1000 + 500
-    );
-
-  }
-
-
-  /* Start gently */
-
-  for(
-    let i = 0;
-    i < 5;
-    i++
-  ){
-
-    setTimeout(
-      createHeart,
-      i * 900
-    );
-
-  }
-
-
-  for(
-    let i = 0;
-    i < 5;
-    i++
-  ){
-
-    setTimeout(
-      createSparkle,
-      i * 700
-    );
-
-  }
-
-
-  /* Continue slowly */
-
-  setInterval(
-    createHeart,
-    2800
-  );
-
-
-  setInterval(
-    createSparkle,
-    2100
-  );
-
-
-  /* =====================================================
-     RSVP MODAL
-     ===================================================== */
-
-  const modal =
-    document.getElementById(
-      "rsvpModal"
-    );
-
-
-  const open =
-    document.getElementById(
-      "openRsvp"
-    );
-
-
-  const close =
-    document.getElementById(
-      "closeRsvp"
-    );
-
-
-  const form =
-    document.getElementById(
-      "rsvpForm"
-    );
-
-
-  const answer =
-    document.getElementById(
-      "answer"
-    );
-
-
-  const status =
-    document.getElementById(
-      "status"
-    );
-
-
-  const guestCountField =
-    document.getElementById(
-      "guestCountField"
-    );
-
-
-  let guestCount = "1";
-
-
-  open.addEventListener(
-    "click",
-    () => {
-
-      modal.classList.add(
-        "open"
-      );
-
-      modal.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-
-      setTimeout(
-        () =>
-          document
-            .getElementById(
-              "guestName"
-            )
-            .focus(),
-        50
-      );
-
-    }
-  );
-
-
-  close.addEventListener(
-    "click",
-    () => {
-
-      modal.classList.remove(
-        "open"
-      );
-
-      modal.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-    }
-  );
-
-
-  modal.addEventListener(
-    "click",
-    event => {
-
-      if(
-        event.target === modal
-      ){
-
-        close.click();
-
-      }
-
-    }
-  );
-
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if(
-        event.key === "Escape" &&
-        modal.classList.contains(
-          "open"
-        )
-      ){
-
-        close.click();
-
-      }
-
-    }
-  );
-
-
-  /* =====================================================
-     YES / NO
-     ===================================================== */
-
-  document
-    .querySelectorAll(
-      ".choice[data-answer]"
-    )
-    .forEach(
-      button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            document
-              .querySelectorAll(
-                ".choice[data-answer]"
-              )
-              .forEach(
-                x =>
-                  x.classList.remove(
-                    "selected"
-                  )
-              );
-
-
-            button.classList.add(
-              "selected"
-            );
-
-
-            answer.value =
-              button.dataset.answer;
-
-
-            guestCountField.style.display =
-              answer.value === "Yes"
-                ? "block"
-                : "none";
-
+if(
+  "IntersectionObserver"
+  in window
+){
+
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(
+          entry => {
 
             if(
-              answer.value === "Yes"
+              entry.isIntersecting
             ){
 
-              guestCount = "1";
-
-              document
-                .querySelectorAll(
-                  ".guest-choice"
-                )
-                .forEach(
-                  x =>
-                    x.classList.remove(
-                      "selected"
-                    )
-                );
-
-
-              document
-                .querySelector(
-                  '.guest-choice[data-count="1"]'
-                )
-                .classList.add(
-                  "selected"
-                );
+              entry.target
+                .classList
+                .add("show");
 
             }
-
-
-            status.textContent =
-              "";
 
           }
         );
 
+      },
+      {
+        threshold:.12
       }
     );
 
 
-  /* =====================================================
-     PARTNER
-     ===================================================== */
+  reveals.forEach(
+    element =>
+      observer.observe(element)
+  );
 
-  document
-    .querySelectorAll(
-      ".guest-choice"
-    )
-    .forEach(
-      button => {
+}
+else{
 
-        button.addEventListener(
-          "click",
-          () => {
+  reveals.forEach(
+    element =>
+      element.classList.add("show")
+  );
+
+}
+
+
+/* =========================================================
+   FLOATING HEARTS & SPARKLES
+   ========================================================= */
+
+const effects =
+  document.getElementById(
+    "floatingEffects"
+  );
+
+
+const heartSymbols = [
+  "♡",
+  "♥",
+  "♡",
+  "♡"
+];
+
+
+const sparkleSymbols = [
+  "✦",
+  "✧",
+  "⋆",
+  "✦"
+];
+
+
+function createHeart(){
+
+  const heart =
+    document.createElement(
+      "span"
+    );
+
+
+  heart.className =
+    "floating-heart";
+
+
+  heart.textContent =
+    heartSymbols[
+      Math.floor(
+        Math.random() *
+        heartSymbols.length
+      )
+    ];
+
+
+  const size =
+    14 +
+    Math.random() * 10;
+
+
+  const duration =
+    9 +
+    Math.random() * 7;
+
+
+  const drift =
+    (
+      Math.random() * 160 -
+      80
+    ) + "px";
+
+
+  heart.style.left =
+    Math.random() * 100 + "%";
+
+
+  heart.style.fontSize =
+    size + "px";
+
+
+  heart.style.setProperty(
+    "--drift",
+    drift
+  );
+
+
+  heart.style.animationDuration =
+    duration + "s";
+
+
+  effects.appendChild(
+    heart
+  );
+
+
+  setTimeout(
+    () => heart.remove(),
+    duration * 1000 + 500
+  );
+
+}
+
+
+function createSparkle(){
+
+  const sparkle =
+    document.createElement(
+      "span"
+    );
+
+
+  sparkle.className =
+    "floating-sparkle";
+
+
+  sparkle.textContent =
+    sparkleSymbols[
+      Math.floor(
+        Math.random() *
+        sparkleSymbols.length
+      )
+    ];
+
+
+  const size =
+    11 +
+    Math.random() * 8;
+
+
+  const duration =
+    7 +
+    Math.random() * 6;
+
+
+  const drift =
+    (
+      Math.random() * 140 -
+      70
+    ) + "px";
+
+
+  sparkle.style.left =
+    Math.random() * 100 + "%";
+
+
+  sparkle.style.fontSize =
+    size + "px";
+
+
+  sparkle.style.setProperty(
+    "--drift",
+    drift
+  );
+
+
+  sparkle.style.animationDuration =
+    duration + "s";
+
+
+  effects.appendChild(
+    sparkle
+  );
+
+
+  setTimeout(
+    () => sparkle.remove(),
+    duration * 1000 + 500
+  );
+
+}
+
+
+/* =========================================================
+   INITIAL EFFECTS
+   ========================================================= */
+
+for(
+  let i = 0;
+  i < 7;
+  i++
+){
+
+  setTimeout(
+    createHeart,
+    i * 650
+  );
+
+}
+
+
+for(
+  let i = 0;
+  i < 7;
+  i++
+){
+
+  setTimeout(
+    createSparkle,
+    i * 500
+  );
+
+}
+
+
+/* =========================================================
+   CONTINUOUS EFFECTS
+   ========================================================= */
+
+setInterval(
+  createHeart,
+  1800
+);
+
+
+setInterval(
+  createSparkle,
+  1400
+);
+
+
+/* =========================================================
+   RSVP
+   ========================================================= */
+
+const modal =
+  document.getElementById(
+    "rsvpModal"
+  );
+
+
+const open =
+  document.getElementById(
+    "openRsvp"
+  );
+
+
+const close =
+  document.getElementById(
+    "closeRsvp"
+  );
+
+
+const form =
+  document.getElementById(
+    "rsvpForm"
+  );
+
+
+const answer =
+  document.getElementById(
+    "answer"
+  );
+
+
+const status =
+  document.getElementById(
+    "status"
+  );
+
+
+const guestCountField =
+  document.getElementById(
+    "guestCountField"
+  );
+
+
+let guestCount = "1";
+
+
+/* OPEN MODAL */
+
+open.addEventListener(
+  "click",
+  () => {
+
+    modal.classList.add(
+      "open"
+    );
+
+    modal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+
+    setTimeout(
+      () =>
+        document
+          .getElementById(
+            "guestName"
+          )
+          .focus(),
+      50
+    );
+
+  }
+);
+
+
+/* CLOSE MODAL */
+
+close.addEventListener(
+  "click",
+  () => {
+
+    modal.classList.remove(
+      "open"
+    );
+
+    modal.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+  }
+);
+
+
+/* CLICK OUTSIDE */
+
+modal.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target === modal
+    ){
+
+      close.click();
+
+    }
+
+  }
+);
+
+
+/* ESCAPE */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Escape" &&
+      modal.classList.contains(
+        "open"
+      )
+    ){
+
+      close.click();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   YES / NO
+   ========================================================= */
+
+document
+  .querySelectorAll(
+    ".choice[data-answer]"
+  )
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          document
+            .querySelectorAll(
+              ".choice[data-answer]"
+            )
+            .forEach(
+              element =>
+                element.classList.remove(
+                  "selected"
+                )
+            );
+
+
+          button.classList.add(
+            "selected"
+          );
+
+
+          answer.value =
+            button.dataset.answer;
+
+
+          guestCountField.style.display =
+            answer.value === "Yes"
+              ? "block"
+              : "none";
+
+
+          if(
+            answer.value === "Yes"
+          ){
+
+            guestCount = "1";
+
 
             document
               .querySelectorAll(
                 ".guest-choice"
               )
               .forEach(
-                x =>
-                  x.classList.remove(
+                element =>
+                  element.classList.remove(
                     "selected"
                   )
               );
 
 
-            button.classList.add(
-              "selected"
+            document
+              .querySelector(
+                '.guest-choice[data-count="1"]'
+              )
+              .classList.add(
+                "selected"
+              );
+
+          }
+
+
+          status.textContent =
+            "";
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   PARTNER
+   ========================================================= */
+
+document
+  .querySelectorAll(
+    ".guest-choice"
+  )
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          document
+            .querySelectorAll(
+              ".guest-choice"
+            )
+            .forEach(
+              element =>
+                element.classList.remove(
+                  "selected"
+                )
             );
 
 
-            guestCount =
-              button.dataset.count;
+          button.classList.add(
+            "selected"
+          );
 
 
-            status.textContent =
-              "";
-
-          }
-        );
-
-      }
-    );
+          guestCount =
+            button.dataset.count;
 
 
-  /* =====================================================
-     GOOGLE SHEETS RSVP ENDPOINT
-     ===================================================== */
+          status.textContent =
+            "";
 
-  const RSVP_ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbyERhjwjReOXhcEGDXFvmsJS4Q3eOU2BrcpoPr1WSOVOgXEES6iJY4kaHtmjAOp7C3WfA/exec";
+        }
+      );
 
-
-  form.addEventListener(
-    "submit",
-    async event => {
-
-      event.preventDefault();
+    }
+  );
 
 
-      if(!answer.value){
+/* =========================================================
+   GOOGLE SHEETS
+   ========================================================= */
 
-        status.textContent =
-          "Please choose Yes or No.";
-
-        return;
-
-      }
+const RSVP_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbyERhjwjReOXhcEGDXFvmsJS4Q3eOU2BrcpoPr1WSOVOgXEES6iJY4kaHtmjAOp7C3WfA/exec";
 
 
-      const name =
-        document
-          .getElementById(
-            "guestName"
-          )
-          .value
-          .trim();
+form.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
 
 
-      const count =
-        answer.value === "Yes"
-          ? guestCount
-          : "0";
+    if(!answer.value){
+
+      status.textContent =
+        "Please choose Yes or No.";
+
+      return;
+
+    }
+
+
+    const name =
+      document
+        .getElementById(
+          "guestName"
+        )
+        .value
+        .trim();
+
+
+    const count =
+      answer.value === "Yes"
+        ? guestCount
+        : "0";
+
+
+    status.textContent =
+      "Sending your RSVP…";
+
+
+    try{
+
+      const body =
+        new URLSearchParams({
+
+          name:name,
+
+          answer:answer.value,
+
+          guestCount:count
+
+        });
+
+
+      await fetch(
+        RSVP_ENDPOINT,
+        {
+          method:"POST",
+
+          mode:"no-cors",
+
+          headers:{
+            "Content-Type":
+              "application/x-www-form-urlencoded;charset=UTF-8"
+          },
+
+          body:body
+        }
+      );
 
 
       status.textContent =
-        "Sending your RSVP…";
+        "Thank you — your RSVP has been received ♡";
 
 
-      try{
-
-        const body =
-          new URLSearchParams({
-            name:name,
-            answer:answer.value,
-            guestCount:count
-          });
+      form.reset();
 
 
-        await fetch(
-          RSVP_ENDPOINT,
-          {
-            method:"POST",
+      guestCountField.style.display =
+        "none";
 
-            mode:"no-cors",
 
-            headers:{
-              "Content-Type":
-                "application/x-www-form-urlencoded;charset=UTF-8"
-            },
+      guestCount =
+        "1";
 
-            body:body
-          }
+
+      document
+        .querySelectorAll(
+          ".choice"
+        )
+        .forEach(
+          element =>
+            element.classList.remove(
+              "selected"
+            )
         );
 
+    }
 
-        status.textContent =
-          "Thank you — your RSVP has been received ♡";
+    catch(error){
 
-
-        form.reset();
-
-
-        guestCountField.style.display =
-          "none";
-
-
-        guestCount =
-          "1";
-
-
-        document
-          .querySelectorAll(
-            ".choice"
-          )
-          .forEach(
-            x =>
-              x.classList.remove(
-                "selected"
-              )
-          );
-
-      }
-
-      catch(error){
-
-        status.textContent =
-          "Something went wrong. Please try again.";
-
-      }
+      status.textContent =
+        "Something went wrong. Please try again.";
 
     }
+
+  }
+);
+
+
+/* =========================================================
+   MUSIC BUTTON
+   ========================================================= */
+
+const musicButton =
+  document.getElementById(
+    "musicButton"
   );
 
 
-  /* =====================================================
-     MUSIC BUTTON
-     ===================================================== */
+musicButton.addEventListener(
+  "click",
+  () => {
 
-  const musicButton =
-    document.getElementById(
-      "musicButton"
-    );
+    /*
+      Music can be connected here later.
 
+      Example:
 
-  let musicPlaying = false;
+      const audio =
+        new Audio("music.mp3");
 
+      audio.play();
+    */
 
-  musicButton.addEventListener(
-    "click",
-    () => {
+    musicButton.textContent =
+      "♫";
 
-      /*
-       * Music can be added here later.
-       *
-       * For example:
-       *
-       * const audio = new Audio("music.mp3");
-       *
-       * Browsers require the user to interact
-       * with the page before audio can play.
-       */
-
-      musicPlaying =
-        !musicPlaying;
-
-
-      musicButton.textContent =
-        musicPlaying
-          ? "♫"
-          : "♫";
-
-    }
-  );
+  }
+);
 
 
 })();
