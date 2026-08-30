@@ -15,25 +15,21 @@
   content="#fbf2eb"
 >
 
-<title>
-  Aser & Esra — October 22, 2026
-</title>
+<title>Aser & Esra — October 22, 2026</title>
 
+
+<!-- =========================================================
+     FONTS
+========================================================= -->
 
 <style>
 
-/* =========================================================
-   FONTS
-   ========================================================= */
-
-@import url(
-  'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap'
-);
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap');
 
 
 /* =========================================================
-   COLORS
-   ========================================================= */
+   VARIABLES
+========================================================= */
 
 :root{
 
@@ -47,24 +43,20 @@
 
   --gold:#bd8953;
 
-  --white:#fffaf6;
-
 }
 
 
 /* =========================================================
    RESET
-   ========================================================= */
+========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
-
 html{
   scroll-behavior:smooth;
 }
-
 
 body{
 
@@ -82,21 +74,93 @@ body{
 
 }
 
-
 img{
+
   display:block;
+
   max-width:100%;
+
+}
+
+a{
+
+  color:inherit;
+
 }
 
 
-a{
-  color:inherit;
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+.music{
+
+  position:fixed;
+
+  z-index:80;
+
+  top:20px;
+
+  right:20px;
+
+  width:50px;
+
+  height:50px;
+
+  border:1px solid rgba(111,63,44,.35);
+
+  border-radius:50%;
+
+  background:rgba(251,242,235,.78);
+
+  backdrop-filter:blur(8px);
+
+  -webkit-backdrop-filter:blur(8px);
+
+  font-size:19px;
+
+  color:var(--ink);
+
+  cursor:pointer;
+
+  transition:
+
+    transform .25s ease,
+
+    background .25s ease;
+
+}
+
+.music:hover{
+
+  transform:scale(1.08);
+
+  background:rgba(251,242,235,.95);
+
+}
+
+.music.playing{
+
+  animation:musicPulse 2s ease-in-out infinite;
+
+}
+
+@keyframes musicPulse{
+
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.08);
+  }
+
 }
 
 
 /* =========================================================
    FLOATING EFFECTS CONTAINER
-   ========================================================= */
+========================================================= */
 
 .floating-effects{
 
@@ -110,104 +174,374 @@ a{
 
   pointer-events:none;
 
+  overflow:hidden;
+
   z-index:60;
 
-  overflow:hidden;
+  transform:translateZ(0);
+
+  -webkit-transform:translateZ(0);
+
+  contain:strict;
 
 }
 
 
 /* =========================================================
    FLOATING HEARTS
-   ========================================================= */
+========================================================= */
 
 .floating-heart{
 
   position:absolute;
 
+  left:0;
+
+  top:0;
+
   display:block;
-
-  pointer-events:none;
-
-  user-select:none;
-
-  opacity:0;
-
-  will-change:
-    transform,
-    opacity;
 
   font-family:Georgia,serif;
 
   color:rgba(111,63,44,.55);
 
-  animation-name:heartFloat;
+  pointer-events:none;
 
-  animation-timing-function:linear;
+  will-change:transform,opacity;
 
-  animation-fill-mode:forwards;
+  transform:
+
+    translate3d(
+
+      var(--start-x),
+
+      110vh,
+
+      0
+
+    );
+
+  -webkit-transform:
+
+    translate3d(
+
+      var(--start-x),
+
+      110vh,
+
+      0
+
+    );
+
+  animation:
+
+    floatHeart
+
+    var(--duration)
+
+    linear
+
+    forwards;
+
+  -webkit-animation:
+
+    floatHeart
+
+    var(--duration)
+
+    linear
+
+    forwards;
 
 }
 
 
-@keyframes heartFloat{
+/* =========================================================
+   HEART ANIMATION
+========================================================= */
+
+@keyframes floatHeart{
 
   0%{
 
     transform:
+
       translate3d(
-        0,
+
+        var(--start-x),
+
         110vh,
+
         0
+
       )
-      rotate(-10deg)
+
+      rotate(0deg)
+
       scale(.65);
 
     opacity:0;
 
   }
 
-
-  10%{
+  8%{
 
     opacity:.75;
 
   }
 
-
-  50%{
+  30%{
 
     transform:
+
       translate3d(
-        var(--drift),
-        50vh,
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-1)
+
+        ),
+
+        75vh,
+
         0
+
       )
+
       rotate(8deg)
+
+      scale(.9);
+
+    opacity:.7;
+
+  }
+
+  55%{
+
+    transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-2)
+
+        ),
+
+        45vh,
+
+        0
+
+      )
+
+      rotate(-8deg)
+
       scale(1);
 
     opacity:.6;
 
   }
 
-
   80%{
 
-    opacity:.4;
+    transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-3)
+
+        ),
+
+        15vh,
+
+        0
+
+      )
+
+      rotate(10deg)
+
+      scale(.85);
+
+    opacity:.35;
 
   }
-
 
   100%{
 
     transform:
+
       translate3d(
-        calc(var(--drift) * -0.5),
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-4)
+
+        ),
+
         -15vh,
+
         0
+
       )
+
       rotate(-8deg)
-      scale(.7);
+
+      scale(.65);
+
+    opacity:0;
+
+  }
+
+}
+
+
+@-webkit-keyframes floatHeart{
+
+  0%{
+
+    -webkit-transform:
+
+      translate3d(
+
+        var(--start-x),
+
+        110vh,
+
+        0
+
+      )
+
+      rotate(0deg)
+
+      scale(.65);
+
+    opacity:0;
+
+  }
+
+  8%{
+
+    opacity:.75;
+
+  }
+
+  30%{
+
+    -webkit-transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-1)
+
+        ),
+
+        75vh,
+
+        0
+
+      )
+
+      rotate(8deg)
+
+      scale(.9);
+
+    opacity:.7;
+
+  }
+
+  55%{
+
+    -webkit-transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-2)
+
+        ),
+
+        45vh,
+
+        0
+
+      )
+
+      rotate(-8deg)
+
+      scale(1);
+
+    opacity:.6;
+
+  }
+
+  80%{
+
+    -webkit-transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-3)
+
+        ),
+
+        15vh,
+
+        0
+
+      )
+
+      rotate(10deg)
+
+      scale(.85);
+
+    opacity:.35;
+
+  }
+
+  100%{
+
+    -webkit-transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-4)
+
+        ),
+
+        -15vh,
+
+        0
+
+      )
+
+      rotate(-8deg)
+
+      scale(.65);
 
     opacity:0;
 
@@ -218,93 +552,212 @@ a{
 
 /* =========================================================
    FLOATING SPARKLES
-   ========================================================= */
+========================================================= */
 
 .floating-sparkle{
 
   position:absolute;
 
+  left:0;
+
+  top:0;
+
   display:block;
+
+  color:rgba(189,137,83,.85);
 
   pointer-events:none;
 
-  user-select:none;
+  will-change:transform,opacity;
 
-  opacity:0;
+  transform:
 
-  will-change:
-    transform,
-    opacity;
+    translate3d(
 
-  color:rgba(189,137,83,.9);
+      var(--start-x),
 
-  animation-name:sparkleFloat;
+      110vh,
 
-  animation-timing-function:linear;
+      0
 
-  animation-fill-mode:forwards;
+    );
+
+  -webkit-transform:
+
+    translate3d(
+
+      var(--start-x),
+
+      110vh,
+
+      0
+
+    );
+
+  animation:
+
+    floatSparkle
+
+    var(--duration)
+
+    linear
+
+    forwards;
+
+  -webkit-animation:
+
+    floatSparkle
+
+    var(--duration)
+
+    linear
+
+    forwards;
 
 }
 
 
-@keyframes sparkleFloat{
+/* =========================================================
+   SPARKLE ANIMATION
+========================================================= */
+
+@keyframes floatSparkle{
 
   0%{
 
     transform:
+
       translate3d(
-        0,
-        105vh,
+
+        var(--start-x),
+
+        110vh,
+
         0
+
       )
-      scale(.15)
-      rotate(0deg);
+
+      rotate(0deg)
+
+      scale(.2);
 
     opacity:0;
 
   }
 
-
-  15%{
+  10%{
 
     opacity:.9;
 
   }
 
-
-  45%{
+  30%{
 
     transform:
+
       translate3d(
-        var(--drift),
-        55vh,
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-1)
+
+        ),
+
+        75vh,
+
         0
+
       )
-      scale(1.15)
-      rotate(90deg);
 
-    opacity:.75;
+      rotate(60deg)
 
-  }
+      scale(1);
 
-
-  75%{
-
-    opacity:.45;
+    opacity:.8;
 
   }
 
+  55%{
+
+    transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-2)
+
+        ),
+
+        45vh,
+
+        0
+
+      )
+
+      rotate(120deg)
+
+      scale(1.25);
+
+    opacity:.7;
+
+  }
+
+  80%{
+
+    transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-3)
+
+        ),
+
+        15vh,
+
+        0
+
+      )
+
+      rotate(180deg)
+
+      scale(.8);
+
+    opacity:.35;
+
+  }
 
   100%{
 
     transform:
+
       translate3d(
-        calc(var(--drift) * -0.5),
-        -10vh,
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-4)
+
+        ),
+
+        -15vh,
+
         0
+
       )
-      scale(.15)
-      rotate(180deg);
+
+      rotate(240deg)
+
+      scale(.15);
 
     opacity:0;
 
@@ -313,193 +766,145 @@ a{
 }
 
 
-/* =========================================================
-   HERO SPARKLES
-   ========================================================= */
+@-webkit-keyframes floatSparkle{
 
-.hero-sparkle{
+  0%{
 
-  position:absolute;
+    -webkit-transform:
 
-  z-index:2;
+      translate3d(
 
-  color:rgba(189,137,83,.7);
+        var(--start-x),
 
-  pointer-events:none;
+        110vh,
 
-  animation:
-    twinkle
-    3s
-    ease-in-out
-    infinite;
+        0
 
-}
+      )
 
+      rotate(0deg)
 
-.hero-sparkle:nth-child(1){
+      scale(.2);
 
-  top:22%;
-
-  left:12%;
-
-  font-size:14px;
-
-  animation-delay:.4s;
-
-}
-
-
-.hero-sparkle:nth-child(2){
-
-  top:31%;
-
-  right:14%;
-
-  font-size:10px;
-
-  animation-delay:1.2s;
-
-}
-
-
-.hero-sparkle:nth-child(3){
-
-  top:56%;
-
-  left:8%;
-
-  font-size:9px;
-
-  animation-delay:2s;
-
-}
-
-
-.hero-sparkle:nth-child(4){
-
-  top:48%;
-
-  right:8%;
-
-  font-size:13px;
-
-  animation-delay:.8s;
-
-}
-
-
-@keyframes twinkle{
-
-  0%,100%{
-
-    opacity:.15;
-
-    transform:
-      scale(.6)
-      rotate(0deg);
+    opacity:0;
 
   }
 
-
-  50%{
+  10%{
 
     opacity:.9;
 
-    transform:
-      scale(1.35)
-      rotate(45deg);
+  }
+
+  30%{
+
+    -webkit-transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-1)
+
+        ),
+
+        75vh,
+
+        0
+
+      )
+
+      rotate(60deg)
+
+      scale(1);
+
+    opacity:.8;
 
   }
 
-}
+  55%{
 
+    -webkit-transform:
 
-/* =========================================================
-   MUSIC BUTTON
-   ========================================================= */
+      translate3d(
 
-.music{
+        calc(
 
-  position:fixed;
+          var(--start-x) +
 
-  z-index:70;
+          var(--drift-2)
 
-  top:20px;
+        ),
 
-  right:20px;
+        45vh,
 
-  width:50px;
+        0
 
-  height:50px;
+      )
 
-  border:
-    1px solid
-    rgba(111,63,44,.35);
+      rotate(120deg)
 
-  border-radius:50%;
+      scale(1.25);
 
-  background:
-    rgba(251,242,235,.78);
-
-  backdrop-filter:blur(8px);
-
-  font-size:18px;
-
-  color:var(--ink);
-
-  cursor:pointer;
-
-  transition:
-
-    transform .3s ease,
-
-    background .3s ease,
-
-    box-shadow .3s ease;
-
-}
-
-
-.music:hover{
-
-  transform:scale(1.08);
-
-  background:
-    rgba(255,250,246,.95);
-
-}
-
-
-.music.playing{
-
-  animation:
-    musicPulse
-    2s
-    ease-in-out
-    infinite;
-
-  box-shadow:
-
-    0 0 0 5px
-    rgba(189,137,83,.08),
-
-    0 5px 25px
-    rgba(111,63,44,.16);
-
-}
-
-
-@keyframes musicPulse{
-
-  0%,100%{
-
-    transform:scale(1);
+    opacity:.7;
 
   }
 
-  50%{
+  80%{
 
-    transform:scale(1.07);
+    -webkit-transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-3)
+
+        ),
+
+        15vh,
+
+        0
+
+      )
+
+      rotate(180deg)
+
+      scale(.8);
+
+    opacity:.35;
+
+  }
+
+  100%{
+
+    -webkit-transform:
+
+      translate3d(
+
+        calc(
+
+          var(--start-x) +
+
+          var(--drift-4)
+
+        ),
+
+        -15vh,
+
+        0
+
+      )
+
+      rotate(240deg)
+
+      scale(.15);
+
+    opacity:0;
 
   }
 
@@ -508,7 +913,7 @@ a{
 
 /* =========================================================
    HERO
-   ========================================================= */
+========================================================= */
 
 .hero{
 
@@ -523,8 +928,11 @@ a{
   justify-content:center;
 
   padding:
+
     0
+
     18px
+
     48px;
 
   text-align:center;
@@ -534,15 +942,23 @@ a{
   background:
 
     radial-gradient(
+
       circle at 15% 15%,
+
       rgba(255,255,255,.95),
+
       transparent 30%
+
     ),
 
     radial-gradient(
+
       circle at 85% 48%,
+
       rgba(224,187,167,.5),
+
       transparent 36%
+
     ),
 
     var(--paper);
@@ -560,11 +976,9 @@ a{
 
   left:50%;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 
-  width:
-    min(920px,100%);
+  width:min(920px,100%);
 
   height:73svh;
 
@@ -597,15 +1011,23 @@ a{
   background:
 
     radial-gradient(
+
       ellipse at center,
+
       transparent 48%,
+
       rgba(251,242,235,.68) 96%
+
     ),
 
     linear-gradient(
+
       to bottom,
+
       transparent 63%,
+
       var(--paper) 100%
+
     );
 
 }
@@ -615,28 +1037,20 @@ a{
 
   position:relative;
 
-  z-index:3;
+  z-index:2;
 
-  width:
-    min(1050px,100%);
+  width:min(1050px,100%);
 
 }
 
 
 .kicker{
 
-  font-family:
-    "Cormorant Garamond",
-    serif;
+  font-family:"Cormorant Garamond",serif;
 
   font-weight:500;
 
-  font-size:
-    clamp(
-      27px,
-      5vw,
-      54px
-    );
+  font-size:clamp(27px,5vw,54px);
 
   line-height:1;
 
@@ -645,10 +1059,6 @@ a{
   text-transform:uppercase;
 
   margin-bottom:12px;
-
-  text-shadow:
-    0 1px 15px
-    rgba(251,242,235,.8);
 
 }
 
@@ -659,8 +1069,7 @@ a{
 
   display:block;
 
-  width:
-    min(260px,38vw);
+  width:min(260px,38vw);
 
   height:1px;
 
@@ -668,34 +1077,22 @@ a{
 
   opacity:.65;
 
-  margin:
-    15px auto 0;
+  margin:15px auto 0;
 
 }
 
 
 .names{
 
-  font-family:
-    "Great Vibes",
-    cursive;
+  font-family:"Great Vibes",cursive;
 
   font-weight:400;
 
-  font-size:
-    clamp(
-      72px,
-      16vw,
-      160px
-    );
+  font-size:clamp(72px,16vw,160px);
 
   line-height:.78;
 
   margin:0;
-
-  text-shadow:
-    0 2px 20px
-    rgba(251,242,235,.7);
 
 }
 
@@ -706,19 +1103,14 @@ a{
 
   letter-spacing:.38em;
 
-  margin:
-    29px
-    0
-    14px;
+  margin:29px 0 14px;
 
 }
 
 
 .tagline{
 
-  font-family:
-    "Great Vibes",
-    cursive;
+  font-family:"Great Vibes",cursive;
 
   font-size:26px;
 
@@ -752,9 +1144,7 @@ a{
 
   height:39px;
 
-  border:
-    1px solid
-    var(--gold);
+  border:1px solid var(--gold);
 
   border-radius:50%;
 
@@ -764,39 +1154,18 @@ a{
 
   font-size:16px;
 
-  animation:
-    scrollPulse
-    2.5s
-    ease-in-out
-    infinite;
-
-}
-
-
-@keyframes scrollPulse{
-
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(5px);
-  }
-
 }
 
 
 /* =========================================================
    SECTIONS
-   ========================================================= */
+========================================================= */
 
 .section{
 
   position:relative;
 
-  padding:
-    115px
-    22px;
+  padding:115px 22px;
 
   text-align:center;
 
@@ -856,31 +1225,20 @@ a{
 
 .script{
 
-  font-family:
-    "Great Vibes",
-    cursive;
+  font-family:"Great Vibes",cursive;
 
-  font-size:
-    clamp(
-      47px,
-      10vw,
-      78px
-    );
+  font-size:clamp(47px,10vw,78px);
 
   line-height:1.05;
 
-  margin:
-    12px
-    0;
+  margin:12px 0;
 
 }
 
 
 .flourish{
 
-  font-family:
-    "Great Vibes",
-    cursive;
+  font-family:"Great Vibes",cursive;
 
   color:var(--gold);
 
@@ -893,8 +1251,7 @@ a{
 
   max-width:610px;
 
-  margin:
-    20px auto;
+  margin:20px auto;
 
   line-height:2;
 
@@ -909,14 +1266,11 @@ a{
 
   position:relative;
 
-  width:
-    min(590px,88vw);
+  width:min(590px,88vw);
 
-  margin:
-    48px auto 0;
+  margin:48px auto 0;
 
-  transform:
-    rotate(-1.2deg);
+  transform:rotate(-1.2deg);
 
 }
 
@@ -934,8 +1288,8 @@ a{
   z-index:-1;
 
   box-shadow:
-    0 15px 35px
-    rgba(90,48,34,.12);
+
+    0 15px 35px rgba(90,48,34,.12);
 
 }
 
@@ -945,26 +1299,30 @@ a{
   width:100%;
 
   box-shadow:
-    0 18px 45px
-    rgba(90,48,34,.16);
+
+    0 18px 45px rgba(90,48,34,.16);
 
 }
 
 
 /* =========================================================
    DETAILS
-   ========================================================= */
+========================================================= */
 
 .details{
 
   background:
 
     linear-gradient(
+
       rgba(80,43,32,.9),
+
       rgba(80,43,32,.9)
+
     ),
 
     url("hero-couple.jpg")
+
     center/cover;
 
   color:#fff7f1;
@@ -988,11 +1346,9 @@ a{
 
 .grid{
 
-  width:
-    min(900px,100%);
+  width:min(900px,100%);
 
-  margin:
-    50px auto 0;
+  margin:50px auto 0;
 
   display:grid;
 
@@ -1003,18 +1359,13 @@ a{
 
 .item h3{
 
-  font-family:
-    "Cormorant Garamond",
-    serif;
+  font-family:"Cormorant Garamond",serif;
 
   font-size:31px;
 
   font-weight:500;
 
-  margin:
-    0
-    0
-    7px;
+  margin:0 0 7px;
 
 }
 
@@ -1036,13 +1387,9 @@ a{
 
   margin-top:42px;
 
-  padding:
-    15px
-    31px;
+  padding:15px 31px;
 
-  border:
-    1px solid
-    rgba(255,255,255,.65);
+  border:1px solid rgba(255,255,255,.65);
 
   text-decoration:none;
 
@@ -1054,16 +1401,16 @@ a{
 
   transition:
 
-    background .3s ease,
+    background .25s ease,
 
-    color .3s ease;
+    color .25s ease;
 
 }
 
 
 .map:hover{
 
-  background:#fff;
+  background:#fff7f1;
 
   color:var(--ink);
 
@@ -1072,7 +1419,7 @@ a{
 
 /* =========================================================
    COUNTDOWN
-   ========================================================= */
+========================================================= */
 
 .countdown{
 
@@ -1087,11 +1434,9 @@ a{
 
   justify-content:center;
 
-  width:
-    min(650px,100%);
+  width:min(650px,100%);
 
-  margin:
-    42px auto 0;
+  margin:42px auto 0;
 
 }
 
@@ -1102,12 +1447,12 @@ a{
 
   max-width:150px;
 
-  padding:
-    0
-    12px;
+  padding:0 12px;
 
   border-right:
+
     1px solid
+
     rgba(111,63,44,.2);
 
 }
@@ -1122,9 +1467,7 @@ a{
 
 .num{
 
-  font-family:
-    "Cormorant Garamond",
-    serif;
+  font-family:"Cormorant Garamond",serif;
 
   font-size:48px;
 
@@ -1146,7 +1489,7 @@ a{
 
 /* =========================================================
    RSVP
-   ========================================================= */
+========================================================= */
 
 .rsvp{
 
@@ -1161,13 +1504,13 @@ a{
 
   margin-top:24px;
 
-  padding:
-    16px
-    37px;
+  padding:16px 37px;
 
   background:var(--ink);
 
   color:#fff;
+
+  text-decoration:none;
 
   font-size:9px;
 
@@ -1181,28 +1524,27 @@ a{
 
   transition:
 
-    transform .3s ease,
+    transform .25s ease,
 
-    box-shadow .3s ease;
+    box-shadow .25s ease;
 
 }
 
 
 .rsvp-button:hover{
 
-  transform:
-    translateY(-3px);
+  transform:translateY(-2px);
 
   box-shadow:
-    0 10px 25px
-    rgba(90,48,34,.2);
+
+    0 10px 25px rgba(80,43,32,.18);
 
 }
 
 
 /* =========================================================
-   RSVP MODAL
-   ========================================================= */
+   MODAL
+========================================================= */
 
 .modal{
 
@@ -1220,10 +1562,11 @@ a{
 
   padding:20px;
 
-  background:
-    rgba(65,38,29,.52);
+  background:rgba(65,38,29,.52);
 
   backdrop-filter:blur(7px);
+
+  -webkit-backdrop-filter:blur(7px);
 
 }
 
@@ -1237,23 +1580,19 @@ a{
 
 .modal-card{
 
-  width:
-    min(520px,100%);
+  width:min(520px,100%);
 
-  max-height:90svh;
+  max-height:90vh;
 
-  overflow-y:auto;
+  overflow:auto;
 
   background:var(--paper);
 
-  padding:
-    40px
-    28px
-    32px;
+  padding:40px 28px 32px;
 
   box-shadow:
-    0 25px 80px
-    rgba(40,20,12,.25);
+
+    0 25px 80px rgba(40,20,12,.25);
 
   position:relative;
 
@@ -1285,18 +1624,13 @@ a{
 
 .modal-card h2{
 
-  font-family:
-    "Great Vibes",
-    cursive;
+  font-family:"Great Vibes",cursive;
 
   font-size:58px;
 
   font-weight:400;
 
-  margin:
-    0
-    0
-    4px;
+  margin:0 0 4px;
 
 }
 
@@ -1336,14 +1670,17 @@ a{
 }
 
 
-.field input{
+.field input,
+.field select{
 
   width:100%;
 
   padding:13px 12px;
 
   border:
+
     1px solid
+
     rgba(111,63,44,.25);
 
   background:#fffaf6;
@@ -1353,6 +1690,13 @@ a{
   outline:none;
 
   font-family:Montserrat;
+
+}
+
+
+.field input:focus{
+
+  border-color:var(--gold);
 
 }
 
@@ -1373,7 +1717,9 @@ a{
   padding:14px;
 
   border:
+
     1px solid
+
     rgba(111,63,44,.28);
 
   background:#fffaf6;
@@ -1382,21 +1728,22 @@ a{
 
   cursor:pointer;
 
+  font-family:Montserrat;
+
+  font-size:12px;
+
   transition:
 
-    background .25s ease,
+    background .2s ease,
 
-    color .25s ease,
-
-    transform .2s ease;
+    color .2s ease;
 
 }
 
 
 .choice:hover{
 
-  transform:
-    translateY(-1px);
+  border-color:var(--gold);
 
 }
 
@@ -1435,6 +1782,15 @@ a{
 }
 
 
+.submit:disabled{
+
+  opacity:.55;
+
+  cursor:wait;
+
+}
+
+
 .status{
 
   min-height:20px;
@@ -1450,14 +1806,11 @@ a{
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 footer{
 
-  padding:
-    105px
-    20px
-    90px;
+  padding:105px 20px 90px;
 
   text-align:center;
 
@@ -1487,15 +1840,14 @@ footer .names{
 
 
 /* =========================================================
-   SCROLL REVEAL
-   ========================================================= */
+   SCROLL REVEALS
+========================================================= */
 
 .reveal{
 
   opacity:0;
 
-  transform:
-    translateY(28px);
+  transform:translateY(28px);
 
   transition:
 
@@ -1516,15 +1868,14 @@ footer .names{
 
 
 /* =========================================================
-   DESKTOP
-   ========================================================= */
+   TABLET / DESKTOP
+========================================================= */
 
 @media(min-width:720px){
 
   .grid{
 
-    grid-template-columns:
-      repeat(4,1fr);
+    grid-template-columns:repeat(4,1fr);
 
     gap:0;
 
@@ -1534,7 +1885,9 @@ footer .names{
   .item:not(:last-child){
 
     border-right:
+
       1px solid
+
       rgba(255,255,255,.2);
 
   }
@@ -1544,7 +1897,7 @@ footer .names{
 
 /* =========================================================
    MOBILE
-   ========================================================= */
+========================================================= */
 
 @media(max-width:520px){
 
@@ -1575,12 +1928,7 @@ footer .names{
 
   .names{
 
-    font-size:
-      clamp(
-        70px,
-        20vw,
-        105px
-      );
+    font-size:clamp(70px,20vw,105px);
 
   }
 
@@ -1603,8 +1951,7 @@ footer .names{
 
   .timer{
 
-    width:
-      calc(100% + 10px);
+    width:calc(100% + 10px);
 
     margin-left:-5px;
 
@@ -1613,9 +1960,7 @@ footer .names{
 
   .time{
 
-    padding:
-      0
-      5px;
+    padding:0 5px;
 
   }
 
@@ -1623,70 +1968,6 @@ footer .names{
   .num{
 
     font-size:38px;
-
-  }
-
-
-  .music{
-
-    width:44px;
-
-    height:44px;
-
-    top:14px;
-
-    right:14px;
-
-    font-size:16px;
-
-  }
-
-
-  /* MOBILE FLOATING EFFECTS */
-
-  .floating-effects{
-
-    display:block;
-
-    position:fixed;
-
-    inset:0;
-
-    width:100%;
-
-    height:100%;
-
-    z-index:60;
-
-    pointer-events:none;
-
-    overflow:hidden;
-
-  }
-
-
-  .floating-heart{
-
-    display:block;
-
-    position:absolute;
-
-    font-size:18px;
-
-    color:rgba(111,63,44,.55);
-
-  }
-
-
-  .floating-sparkle{
-
-    display:block;
-
-    position:absolute;
-
-    font-size:14px;
-
-    color:rgba(189,137,83,.9);
 
   }
 
@@ -1701,8 +1982,11 @@ footer .names{
   .modal-card{
 
     padding:
+
       36px
+
       20px
+
       28px;
 
   }
@@ -1714,12 +1998,19 @@ footer .names{
 
   }
 
+
+  .floating-effects{
+
+    display:block;
+
+  }
+
 }
 
 
 /* =========================================================
    REDUCED MOTION
-   ========================================================= */
+========================================================= */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -1745,15 +2036,6 @@ footer .names{
 
   }
 
-
-  .hero-sparkle,
-  .scroll span,
-  .music.playing{
-
-    animation:none;
-
-  }
-
 }
 
 </style>
@@ -1764,156 +2046,112 @@ footer .names{
 <body>
 
 
-<!-- =======================================================
-     FLOATING HEARTS & SPARKLES
-     ======================================================= -->
+<!-- =========================================================
+     FLOATING EFFECTS
+========================================================= -->
 
 <div
   class="floating-effects"
   id="floatingEffects"
-></div>
+  aria-hidden="true">
+</div>
 
 
-<!-- =======================================================
-     MUSIC BUTTON
-     ======================================================= -->
-
-<button
-  class="music"
-  id="musicButton"
-  type="button"
-  aria-label="Play wedding music"
->
-  ♫
-</button>
-
+<!-- =========================================================
+     MUSIC
+========================================================= -->
 
 <audio
   id="weddingMusic"
   src="wedding.mp3"
   preload="auto"
-  loop
-></audio>
+  loop>
+</audio>
 
 
-<!-- =======================================================
+<button
+  class="music"
+  id="musicButton"
+  aria-label="Play wedding music"
+  type="button">
+  ♫
+</button>
+
+
+<!-- =========================================================
      HERO
-     ======================================================= -->
+========================================================= -->
 
 <section class="hero">
-
-
-  <span class="hero-sparkle">
-    ✦
-  </span>
-
-
-  <span class="hero-sparkle">
-    ✦
-  </span>
-
-
-  <span class="hero-sparkle">
-    ✧
-  </span>
-
-
-  <span class="hero-sparkle">
-    ✦
-  </span>
-
 
   <div class="hero-art">
 
     <img
       src="hero-couple.jpg"
-      alt="Aser and Esra"
-    >
+      alt="Illustration of Aser and Esra">
 
   </div>
 
 
   <div class="hero-copy reveal">
 
-
     <div class="kicker">
-
       We're Getting Married
-
     </div>
 
 
     <h1 class="names">
-
       Aser &amp; Esra
-
     </h1>
 
 
     <div class="date">
-
       OCTOBER 22, 2026
-
     </div>
 
 
     <div class="tagline">
-
       A new chapter, a lifetime together ♡
-
     </div>
 
 
     <a
       class="scroll"
-      href="#story"
-    >
+      href="#story">
 
-      <span>
-        ↓
-      </span>
+      <span>↓</span>
 
       Scroll to begin
 
     </a>
-
 
   </div>
 
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      STORY
-     ======================================================= -->
+========================================================= -->
 
 <section
   class="section story"
-  id="story"
->
-
+  id="story">
 
   <div class="reveal">
 
-
     <div class="eyebrow">
-
       Our story
-
     </div>
 
 
     <div class="script">
-
       Two hearts, one story.
-
     </div>
 
 
     <div class="flourish">
-
       ♡
-
     </div>
 
 
@@ -1933,57 +2171,46 @@ footer .names{
 
       <img
         src="hero-couple.jpg"
-        alt="Aser and Esra"
-      >
+        alt="Aser and Esra">
 
     </div>
 
-
   </div>
-
 
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      DETAILS
-     ======================================================= -->
+========================================================= -->
 
 <section
   class="section details"
-  id="details"
->
-
+  id="details">
 
   <div class="reveal">
 
-
     <div class="eyebrow">
-
       The big day
-
     </div>
 
 
     <div class="script">
-
       Come celebrate with us
-
     </div>
 
 
     <div class="flourish">
-
       ♡
-
     </div>
 
 
     <p class="copy">
 
-      Save the date, dress up, bring your
-      favorite people — and celebrate this
-      once-in-a-lifetime moment with us.
+      Save the date, dress up,
+      bring your favorite people —
+      and celebrate this once-in-a-lifetime
+      moment with us.
 
     </p>
 
@@ -1994,17 +2221,12 @@ footer .names{
       <div class="item">
 
         <h3>
-
           October 22
-
         </h3>
 
         <p>
-
           Thursday<br>
-
           2026
-
         </p>
 
       </div>
@@ -2013,17 +2235,12 @@ footer .names{
       <div class="item">
 
         <h3>
-
           4:00 PM
-
         </h3>
 
         <p>
-
           Wedding begins<br>
-
           Please arrive around this time
-
         </p>
 
       </div>
@@ -2032,17 +2249,12 @@ footer .names{
       <div class="item">
 
         <h3>
-
           Hilton Pyramids Golf
-
         </h3>
 
         <p>
-
           Giza, Egypt<br>
-
           Wedding venue
-
         </p>
 
       </div>
@@ -2051,17 +2263,12 @@ footer .names{
       <div class="item">
 
         <h3>
-
           Formal
-
         </h3>
 
         <p>
-
           Elegant attire<br>
-
           please
-
         </p>
 
       </div>
@@ -2074,63 +2281,50 @@ footer .names{
       class="map"
       href="https://maps.app.goo.gl/PqWcDLKrKABdtgDi6"
       target="_blank"
-      rel="noopener"
-    >
+      rel="noopener">
 
       View location
 
     </a>
 
-
   </div>
-
 
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      COUNTDOWN
-     ======================================================= -->
+========================================================= -->
 
 <section class="section countdown">
 
-
   <div class="reveal">
 
-
     <div class="eyebrow">
-
       Counting down to forever
-
     </div>
 
 
     <div class="script">
-
       The day is almost here
-
     </div>
 
 
     <div
       class="timer"
-      aria-live="polite"
-    >
+      aria-live="polite">
 
 
       <div class="time">
 
         <div
           class="num"
-          id="days"
-        >
+          id="days">
           000
         </div>
 
         <div class="label">
-
           Days
-
         </div>
 
       </div>
@@ -2140,15 +2334,12 @@ footer .names{
 
         <div
           class="num"
-          id="hours"
-        >
+          id="hours">
           00
         </div>
 
         <div class="label">
-
           Hours
-
         </div>
 
       </div>
@@ -2158,15 +2349,12 @@ footer .names{
 
         <div
           class="num"
-          id="minutes"
-        >
+          id="minutes">
           00
         </div>
 
         <div class="label">
-
           Minutes
-
         </div>
 
       </div>
@@ -2176,15 +2364,12 @@ footer .names{
 
         <div
           class="num"
-          id="seconds"
-        >
+          id="seconds">
           00
         </div>
 
         <div class="label">
-
           Seconds
-
         </div>
 
       </div>
@@ -2192,37 +2377,28 @@ footer .names{
 
     </div>
 
-
   </div>
-
 
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      RSVP
-     ======================================================= -->
+========================================================= -->
 
 <section
   class="section rsvp"
-  id="rsvp"
->
-
+  id="rsvp">
 
   <div class="reveal">
 
-
     <div class="eyebrow">
-
       One little thing
-
     </div>
 
 
     <div class="script">
-
       Will you join us?
-
     </div>
 
 
@@ -2239,90 +2415,72 @@ footer .names{
     <button
       class="rsvp-button"
       id="openRsvp"
-      type="button"
-    >
+      type="button">
 
       Kindly RSVP
 
     </button>
 
-
   </div>
-
 
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      FOOTER
-     ======================================================= -->
+========================================================= -->
 
 <footer>
 
-
   <div class="script">
-
     With all our love
-
   </div>
 
 
   <div class="names">
-
     Aser &amp; Esra
-
   </div>
 
 
   <div class="date">
-
     OCTOBER 22, 2026
-
   </div>
 
 
   <div class="flourish">
-
     ♡
-
   </div>
 
 
   <div class="small">
-
     See you there
-
   </div>
-
 
 </footer>
 
 
-<!-- =======================================================
+<!-- =========================================================
      RSVP MODAL
-     ======================================================= -->
+========================================================= -->
 
 <div
   class="modal"
   id="rsvpModal"
-  aria-hidden="true"
->
+  aria-hidden="true">
 
 
   <div
     class="modal-card"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="rsvpTitle"
-  >
+    aria-labelledby="rsvpTitle">
 
 
     <button
       class="close"
       id="closeRsvp"
       aria-label="Close"
-      type="button"
-    >
+      type="button">
 
       ×
 
@@ -2330,16 +2488,12 @@ footer .names{
 
 
     <h2 id="rsvpTitle">
-
       Kindly RSVP
-
     </h2>
 
 
     <p>
-
       We'd love to know if you'll be joining us.
-
     </p>
 
 
@@ -2350,11 +2504,8 @@ footer .names{
 
       <div class="field">
 
-
         <label for="guestName">
-
           Your name
-
         </label>
 
 
@@ -2364,22 +2515,17 @@ footer .names{
           type="text"
           autocomplete="name"
           required
-          placeholder="Enter your name"
-        >
-
+          placeholder="Enter your name">
 
       </div>
 
 
-      <!-- ATTENDING -->
+      <!-- YES / NO -->
 
       <div class="field">
 
-
         <label>
-
           Will you be joining us?
-
         </label>
 
 
@@ -2389,8 +2535,7 @@ footer .names{
           <button
             type="button"
             class="choice"
-            data-answer="Yes"
-          >
+            data-answer="Yes">
 
             ♡ Yes, I'll be there
 
@@ -2400,8 +2545,7 @@ footer .names{
           <button
             type="button"
             class="choice"
-            data-answer="No"
-          >
+            data-answer="No">
 
             No, sadly I can't
 
@@ -2409,7 +2553,6 @@ footer .names{
 
 
         </div>
-
 
       </div>
 
@@ -2419,14 +2562,11 @@ footer .names{
       <div
         class="field"
         id="guestCountField"
-        style="display:none"
-      >
+        style="display:none">
 
 
         <label>
-
           Partner Coming?
-
         </label>
 
 
@@ -2436,10 +2576,9 @@ footer .names{
           <button
             type="button"
             class="choice guest-choice selected"
-            data-count="1"
-          >
+            data-count="1">
 
-            No
+            No, just me
 
           </button>
 
@@ -2447,8 +2586,7 @@ footer .names{
           <button
             type="button"
             class="choice guest-choice"
-            data-count="2"
-          >
+            data-count="2">
 
             Yes, my partner
 
@@ -2457,21 +2595,30 @@ footer .names{
 
         </div>
 
-
       </div>
 
+
+      <!-- HIDDEN VALUES -->
 
       <input
         type="hidden"
         id="answer"
-        name="answer"
-      >
+        name="answer">
 
+
+      <input
+        type="hidden"
+        id="guestCount"
+        name="guestCount"
+        value="1">
+
+
+      <!-- SUBMIT -->
 
       <button
         class="submit"
         type="submit"
-      >
+        id="submitRsvp">
 
         Send RSVP
 
@@ -2480,22 +2627,20 @@ footer .names{
 
       <div
         class="status"
-        id="status"
-      ></div>
+        id="status">
+      </div>
 
 
     </form>
 
-
   </div>
-
 
 </div>
 
 
-<!-- =======================================================
+<!-- =========================================================
      JAVASCRIPT
-     ======================================================= -->
+========================================================= -->
 
 <script>
 
@@ -2506,7 +2651,7 @@ footer .names{
 
 /* =========================================================
    COUNTDOWN
-   ========================================================= */
+========================================================= */
 
 const target =
   new Date(
@@ -2529,7 +2674,7 @@ const s =
 
 function tick(){
 
-  const x =
+  let x =
     Math.max(
       0,
       target - Date.now()
@@ -2541,10 +2686,7 @@ function tick(){
       Math.floor(
         x / 86400000
       )
-    ).padStart(
-      3,
-      "0"
-    );
+    ).padStart(3,"0");
 
 
   h.textContent =
@@ -2553,10 +2695,7 @@ function tick(){
         x % 86400000 /
         3600000
       )
-    ).padStart(
-      2,
-      "0"
-    );
+    ).padStart(2,"0");
 
 
   m.textContent =
@@ -2565,10 +2704,7 @@ function tick(){
         x % 3600000 /
         60000
       )
-    ).padStart(
-      2,
-      "0"
-    );
+    ).padStart(2,"0");
 
 
   s.textContent =
@@ -2577,10 +2713,7 @@ function tick(){
         x % 60000 /
         1000
       )
-    ).padStart(
-      2,
-      "0"
-    );
+    ).padStart(2,"0");
 
 }
 
@@ -2594,8 +2727,8 @@ setInterval(
 
 
 /* =========================================================
-   SCROLL REVEAL
-   ========================================================= */
+   SCROLL REVEALS
+========================================================= */
 
 const reveals =
   document.querySelectorAll(
@@ -2644,22 +2777,199 @@ if(
   );
 
 }
-
 else{
 
   reveals.forEach(
     element =>
-      element.classList.add(
-        "show"
-      )
+      element.classList.add("show")
   );
 
 }
 
 
 /* =========================================================
-   FLOATING HEARTS
-   ========================================================= */
+   MUSIC
+========================================================= */
+
+const music =
+  document.getElementById(
+    "weddingMusic"
+  );
+
+
+const musicButton =
+  document.getElementById(
+    "musicButton"
+  );
+
+
+let musicStarted =
+  false;
+
+
+function updateMusicButton(){
+
+  if(
+    !music.paused
+  ){
+
+    musicButton.textContent =
+      "♫";
+
+    musicButton.classList
+      .add("playing");
+
+    musicButton.setAttribute(
+      "aria-label",
+      "Pause wedding music"
+    );
+
+  }
+  else{
+
+    musicButton.textContent =
+      "♫";
+
+    musicButton.classList
+      .remove("playing");
+
+    musicButton.setAttribute(
+      "aria-label",
+      "Play wedding music"
+    );
+
+  }
+
+}
+
+
+async function startMusic(){
+
+  try{
+
+    await music.play();
+
+    musicStarted = true;
+
+    updateMusicButton();
+
+  }
+  catch(error){
+
+    /*
+      Modern browsers often block
+      autoplay with sound.
+
+      We wait for the first user
+      interaction and try again.
+    */
+
+  }
+
+}
+
+
+function attemptAutoplay(){
+
+  startMusic();
+
+}
+
+
+/*
+  Try immediately when page opens.
+*/
+
+window.addEventListener(
+  "load",
+  () => {
+
+    setTimeout(
+      attemptAutoplay,
+      400
+    );
+
+  }
+);
+
+
+/*
+  If autoplay is blocked,
+  first interaction starts music.
+*/
+
+[
+  "click",
+  "touchstart",
+  "pointerdown",
+  "keydown"
+].forEach(
+  eventName => {
+
+    document.addEventListener(
+      eventName,
+      () => {
+
+        if(
+          !musicStarted
+        ){
+
+          startMusic();
+
+        }
+
+      },
+      {
+        once:false,
+        passive:true
+      }
+    );
+
+  }
+);
+
+
+musicButton.addEventListener(
+  "click",
+  async () => {
+
+    if(
+      music.paused
+    ){
+
+      try{
+
+        await music.play();
+
+        musicStarted = true;
+
+      }
+      catch(error){
+
+        console.log(
+          "Music could not be played.",
+          error
+        );
+
+      }
+
+    }
+    else{
+
+      music.pause();
+
+    }
+
+
+    updateMusicButton();
+
+  }
+);
+
+
+/* =========================================================
+   FLOATING EFFECTS
+========================================================= */
 
 const effects =
   document.getElementById(
@@ -2668,32 +2978,41 @@ const effects =
 
 
 const heartSymbols = [
-
   "♡",
-
   "♥",
-
-  "♡",
-
   "♡"
-
 ];
 
 
 const sparkleSymbols = [
-
   "✦",
-
   "✧",
-
   "⋆",
-
   "✦"
-
 ];
 
 
+function randomDrift(){
+
+  return (
+
+    Math.floor(
+      Math.random() * 160
+    ) - 80
+
+  ) + "px";
+
+}
+
+
+/* =========================================================
+   CREATE HEART
+========================================================= */
+
 function createHeart(){
+
+  if(!effects) return;
+
 
   const heart =
     document.createElement(
@@ -2714,40 +3033,58 @@ function createHeart(){
     ];
 
 
-  const size =
-    14 +
-    Math.random() * 10;
+  const startX =
+    Math.random() * 100 + "vw";
 
 
   const duration =
-    9 +
+    8 +
     Math.random() * 7;
 
 
-  const drift =
-    (
-      Math.random() * 160 -
-      80
-    ) + "px";
+  const size =
+    13 +
+    Math.random() * 10;
 
 
-  heart.style.left =
-    Math.random() * 100 +
-    "%";
+  heart.style.setProperty(
+    "--start-x",
+    startX
+  );
+
+
+  heart.style.setProperty(
+    "--drift-1",
+    randomDrift()
+  );
+
+
+  heart.style.setProperty(
+    "--drift-2",
+    randomDrift()
+  );
+
+
+  heart.style.setProperty(
+    "--drift-3",
+    randomDrift()
+  );
+
+
+  heart.style.setProperty(
+    "--drift-4",
+    randomDrift()
+  );
+
+
+  heart.style.setProperty(
+    "--duration",
+    duration + "s"
+  );
 
 
   heart.style.fontSize =
     size + "px";
-
-
-  heart.style.setProperty(
-    "--drift",
-    drift
-  );
-
-
-  heart.style.animationDuration =
-    duration + "s";
 
 
   effects.appendChild(
@@ -2756,14 +3093,34 @@ function createHeart(){
 
 
   setTimeout(
-    () => heart.remove(),
+
+    () => {
+
+      if(
+        heart.parentNode
+      ){
+
+        heart.remove();
+
+      }
+
+    },
+
     duration * 1000 + 500
+
   );
 
 }
 
 
+/* =========================================================
+   CREATE SPARKLE
+========================================================= */
+
 function createSparkle(){
+
+  if(!effects) return;
+
 
   const sparkle =
     document.createElement(
@@ -2784,9 +3141,8 @@ function createSparkle(){
     ];
 
 
-  const size =
-    11 +
-    Math.random() * 8;
+  const startX =
+    Math.random() * 100 + "vw";
 
 
   const duration =
@@ -2794,30 +3150,49 @@ function createSparkle(){
     Math.random() * 6;
 
 
-  const drift =
-    (
-      Math.random() * 140 -
-      70
-    ) + "px";
+  const size =
+    10 +
+    Math.random() * 9;
 
 
-  sparkle.style.left =
-    Math.random() * 100 +
-    "%";
+  sparkle.style.setProperty(
+    "--start-x",
+    startX
+  );
+
+
+  sparkle.style.setProperty(
+    "--drift-1",
+    randomDrift()
+  );
+
+
+  sparkle.style.setProperty(
+    "--drift-2",
+    randomDrift()
+  );
+
+
+  sparkle.style.setProperty(
+    "--drift-3",
+    randomDrift()
+  );
+
+
+  sparkle.style.setProperty(
+    "--drift-4",
+    randomDrift()
+  );
+
+
+  sparkle.style.setProperty(
+    "--duration",
+    duration + "s"
+  );
 
 
   sparkle.style.fontSize =
     size + "px";
-
-
-  sparkle.style.setProperty(
-    "--drift",
-    drift
-  );
-
-
-  sparkle.style.animationDuration =
-    duration + "s";
 
 
   effects.appendChild(
@@ -2826,64 +3201,77 @@ function createSparkle(){
 
 
   setTimeout(
-    () => sparkle.remove(),
+
+    () => {
+
+      if(
+        sparkle.parentNode
+      ){
+
+        sparkle.remove();
+
+      }
+
+    },
+
     duration * 1000 + 500
+
   );
 
 }
 
 
-/* Initial hearts */
+/* =========================================================
+   INITIAL PARTICLES
+========================================================= */
 
 for(
   let i = 0;
-  i < 8;
+  i < 12;
   i++
 ){
 
   setTimeout(
     createHeart,
-    i * 600
+    i * 500
   );
 
 }
 
 
-/* Initial sparkles */
-
 for(
   let i = 0;
-  i < 8;
+  i < 12;
   i++
 ){
 
   setTimeout(
     createSparkle,
-    i * 450
+    i * 400
   );
 
 }
 
 
-/* Continuous hearts */
+/* =========================================================
+   CONTINUOUS PARTICLES
+========================================================= */
 
 setInterval(
   createHeart,
-  1800
+  1500
 );
 
 
-/* Continuous sparkles */
-
 setInterval(
   createSparkle,
-  1400
+  1100
 );
 
 
 /* =========================================================
-   RSVP MODAL
-   ========================================================= */
+   RSVP
+========================================================= */
 
 const modal =
   document.getElementById(
@@ -2915,6 +3303,12 @@ const answer =
   );
 
 
+const guestCountInput =
+  document.getElementById(
+    "guestCount"
+  );
+
+
 const status =
   document.getElementById(
     "status"
@@ -2927,10 +3321,19 @@ const guestCountField =
   );
 
 
-let guestCount = "1";
+const submitButton =
+  document.getElementById(
+    "submitRsvp"
+  );
 
 
-/* OPEN MODAL */
+let guestCount =
+  "1";
+
+
+/* =========================================================
+   OPEN RSVP
+========================================================= */
 
 open.addEventListener(
   "click",
@@ -2945,13 +3348,17 @@ open.addEventListener(
       "false"
     );
 
+
     setTimeout(
-      () =>
+      () => {
+
         document
           .getElementById(
             "guestName"
           )
-          .focus(),
+          .focus();
+
+      },
       50
     );
 
@@ -2959,7 +3366,9 @@ open.addEventListener(
 );
 
 
-/* CLOSE MODAL */
+/* =========================================================
+   CLOSE RSVP
+========================================================= */
 
 close.addEventListener(
   "click",
@@ -2978,7 +3387,9 @@ close.addEventListener(
 );
 
 
-/* CLICK OUTSIDE */
+/* =========================================================
+   CLICK OUTSIDE MODAL
+========================================================= */
 
 modal.addEventListener(
   "click",
@@ -2996,17 +3407,22 @@ modal.addEventListener(
 );
 
 
-/* ESCAPE */
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
 
 document.addEventListener(
   "keydown",
   event => {
 
     if(
+
       event.key === "Escape" &&
+
       modal.classList.contains(
         "open"
       )
+
     ){
 
       close.click();
@@ -3019,18 +3435,20 @@ document.addEventListener(
 
 /* =========================================================
    YES / NO
-   ========================================================= */
+========================================================= */
 
 document
   .querySelectorAll(
     ".choice[data-answer]"
   )
   .forEach(
+
     button => {
 
       button.addEventListener(
         "click",
         () => {
+
 
           document
             .querySelectorAll(
@@ -3038,9 +3456,10 @@ document
             )
             .forEach(
               element =>
-                element.classList.remove(
-                  "selected"
-                )
+                element.classList
+                  .remove(
+                    "selected"
+                  )
             );
 
 
@@ -3063,28 +3482,20 @@ document
             answer.value === "Yes"
           ){
 
-            guestCount = "1";
+            guestCount =
+              "1";
 
+            guestCountInput.value =
+              "1";
 
-            document
-              .querySelectorAll(
-                ".guest-choice"
-              )
-              .forEach(
-                element =>
-                  element.classList.remove(
-                    "selected"
-                  )
-              );
+          }
+          else{
 
+            guestCount =
+              "0";
 
-            document
-              .querySelector(
-                '.guest-choice[data-count="1"]'
-              )
-              .classList.add(
-                "selected"
-              );
+            guestCountInput.value =
+              "0";
 
           }
 
@@ -3096,23 +3507,26 @@ document
       );
 
     }
+
   );
 
 
 /* =========================================================
    PARTNER
-   ========================================================= */
+========================================================= */
 
 document
   .querySelectorAll(
     ".guest-choice"
   )
   .forEach(
+
     button => {
 
       button.addEventListener(
         "click",
         () => {
+
 
           document
             .querySelectorAll(
@@ -3120,9 +3534,10 @@ document
             )
             .forEach(
               element =>
-                element.classList.remove(
-                  "selected"
-                )
+                element.classList
+                  .remove(
+                    "selected"
+                  )
             );
 
 
@@ -3135,6 +3550,10 @@ document
             button.dataset.count;
 
 
+          guestCountInput.value =
+            guestCount;
+
+
           status.textContent =
             "";
 
@@ -3142,16 +3561,21 @@ document
       );
 
     }
+
   );
 
 
 /* =========================================================
-   GOOGLE SHEETS RSVP
-   ========================================================= */
+   GOOGLE APPS SCRIPT ENDPOINT
+========================================================= */
 
 const RSVP_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbyERhjwjReOXhcEGDXFvmsJS4Q3eOU2BrcpoPr1WSOVOgXEES6iJY4kaHtmjAOp7C3WfA/exec";
 
+
+/* =========================================================
+   RSVP SUBMISSION
+========================================================= */
 
 form.addEventListener(
   "submit",
@@ -3181,7 +3605,9 @@ form.addEventListener(
         .trim();
 
 
-    if(!name){
+    if(
+      !name
+    ){
 
       status.textContent =
         "Please enter your name.";
@@ -3201,7 +3627,12 @@ form.addEventListener(
       "Sending your RSVP…";
 
 
+    submitButton.disabled =
+      true;
+
+
     try{
+
 
       const body =
         new URLSearchParams({
@@ -3246,12 +3677,20 @@ form.addEventListener(
       form.reset();
 
 
-      guestCountField.style.display =
-        "none";
+      answer.value =
+        "";
 
 
       guestCount =
         "1";
+
+
+      guestCountInput.value =
+        "1";
+
+
+      guestCountField.style.display =
+        "none";
 
 
       document
@@ -3260,17 +3699,53 @@ form.addEventListener(
         )
         .forEach(
           element =>
-            element.classList.remove(
-              "selected"
-            )
+            element.classList
+              .remove(
+                "selected"
+              )
         );
 
-    }
 
+      /*
+        Restore default partner
+        selection.
+      */
+
+      const defaultGuestChoice =
+        document.querySelector(
+          '.guest-choice[data-count="1"]'
+        );
+
+
+      if(
+        defaultGuestChoice
+      ){
+
+        defaultGuestChoice.classList
+          .add("selected");
+
+      }
+
+
+      /*
+        Restore RSVP answer
+        buttons to unselected.
+      */
+
+      setTimeout(
+        () => {
+
+          close.click();
+
+        },
+        1800
+      );
+
+
+    }
     catch(error){
 
       console.error(
-        "RSVP error:",
         error
       );
 
@@ -3279,246 +3754,15 @@ form.addEventListener(
         "Something went wrong. Please try again.";
 
     }
+    finally{
 
-  }
-);
-
-
-/* =========================================================
-   WEDDING MUSIC
-   ========================================================= */
-
-const musicButton =
-  document.getElementById(
-    "musicButton"
-  );
-
-
-const weddingMusic =
-  document.getElementById(
-    "weddingMusic"
-  );
-
-
-weddingMusic.loop = true;
-
-weddingMusic.volume = 0.65;
-
-
-/* =========================================================
-   UPDATE MUSIC BUTTON
-   ========================================================= */
-
-function updateMusicButton(){
-
-  if(
-    weddingMusic.paused
-  ){
-
-    musicButton.textContent =
-      "♫";
-
-    musicButton.classList.remove(
-      "playing"
-    );
-
-    musicButton.setAttribute(
-      "aria-label",
-      "Play wedding music"
-    );
-
-  }
-
-  else{
-
-    musicButton.textContent =
-      "❚❚";
-
-    musicButton.classList.add(
-      "playing"
-    );
-
-    musicButton.setAttribute(
-      "aria-label",
-      "Pause wedding music"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   START MUSIC
-   ========================================================= */
-
-let autoplayBlocked = false;
-
-
-async function startWeddingMusic(){
-
-  try{
-
-    await weddingMusic.play();
-
-    autoplayBlocked = false;
-
-    updateMusicButton();
-
-  }
-
-  catch(error){
-
-    autoplayBlocked = true;
-
-    updateMusicButton();
-
-    console.log(
-      "Browser blocked autoplay."
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   MUSIC BUTTON
-   ========================================================= */
-
-musicButton.addEventListener(
-  "click",
-  async () => {
-
-    try{
-
-      if(
-        weddingMusic.paused
-      ){
-
-        await weddingMusic.play();
-
-      }
-
-      else{
-
-        weddingMusic.pause();
-
-      }
-
-      updateMusicButton();
-
-    }
-
-    catch(error){
-
-      console.error(
-        "Unable to play wedding music:",
-        error
-      );
+      submitButton.disabled =
+        false;
 
     }
 
   }
 );
-
-
-/* =========================================================
-   FIRST TAP ANYWHERE
-   ========================================================= */
-
-/*
-   If Safari / Chrome blocks autoplay,
-   the first interaction anywhere on the
-   page will attempt to start the music.
-
-   The music button itself is excluded because
-   it already handles playback.
-*/
-
-async function firstInteraction(){
-
-  if(
-    autoplayBlocked &&
-    weddingMusic.paused
-  ){
-
-    try{
-
-      await weddingMusic.play();
-
-      autoplayBlocked = false;
-
-      updateMusicButton();
-
-    }
-
-    catch(error){
-
-      console.log(
-        "Music still blocked."
-      );
-
-    }
-
-  }
-
-
-  document.removeEventListener(
-    "pointerdown",
-    firstInteraction
-  );
-
-}
-
-
-document.addEventListener(
-  "pointerdown",
-  firstInteraction,
-  {
-    passive:true,
-    once:false
-  }
-);
-
-
-/* =========================================================
-   AUDIO EVENTS
-   ========================================================= */
-
-weddingMusic.addEventListener(
-  "play",
-  () => {
-
-    updateMusicButton();
-
-  }
-);
-
-
-weddingMusic.addEventListener(
-  "pause",
-  () => {
-
-    updateMusicButton();
-
-  }
-);
-
-
-/* =========================================================
-   ATTEMPT AUTOPLAY ON PAGE OPEN
-   ========================================================= */
-
-window.addEventListener(
-  "load",
-  () => {
-
-    startWeddingMusic();
-
-  }
-);
-
 
 })();
 
